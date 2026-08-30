@@ -86,10 +86,9 @@ export function useGsapAnimations() {
         scrollTrigger: { trigger: ".workflow-section", start: "top 68%", invalidateOnRefresh: true }
       });
 
-      gsap.to(".flight-drone", {
-        xPercent: 250,
-        yPercent: 180,
-        rotation: 3,
+      gsap.to(".flight-map img", {
+        scale: 1.08,
+        yPercent: -4,
         ease: "none",
         scrollTrigger: { trigger: ".workflow-section", start: "top 30%", end: "bottom 72%", scrub: true, invalidateOnRefresh: true }
       });

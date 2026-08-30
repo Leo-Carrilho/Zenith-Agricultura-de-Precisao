@@ -6,14 +6,11 @@ export function WorkflowSection() {
       <div className="container workflow-sticky">
         <div className="workflow-visual reveal">
           <div className="flight-map" aria-hidden="true">
-            <span className="field-row row-a" />
-            <span className="field-row row-b" />
-            <span className="field-row row-c" />
-            <span className="flight-path" />
-            <span className="flight-drone">DRONE</span>
+            <img src="/assets/imagem_drone.png" alt="" loading="lazy" />
             <span className="scan-window" />
             <span className="data-packet packet-a" />
             <span className="data-packet packet-b" />
+            <span className="flight-label">CAPTURA AÉREA</span>
           </div>
         </div>
         <div className="workflow-content">

@@ -16,14 +16,17 @@ export function InstallSection() {
       </div>
       <div className="container install-grid">
         <article className="install-card reveal">
-          <img src={dashboardMobile} alt="Dashboard mobile" height={400} />
+          <figure className="install-preview mobile-preview">
+            <img src={dashboardMobile} alt="Dashboard mobile" height={400} />
+          </figure>
           <h3>Aplicativo mobile</h3>
           <p>Acompanhamento em campo, envio de imagens e consulta de tarefas em uma experiência responsiva.</p>
           <button className="btn primary" type="button" onClick={install}><Download size={18} aria-hidden="true" />{installLabel}</button>
         </article>
         <article className="install-card reveal">
-          <img src={dashboardDesktop} alt="Dashboard desktop" width={600} />
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <figure className="install-preview desktop-preview">
+            <img src={dashboardDesktop} alt="Dashboard desktop" width={600} />
+          </figure>
           <h3>Plataforma desktop</h3>
           <p>Análises detalhadas, gestão da equipe e visualização dos módulos em telas maiores.</p>
           <a className="btn secondary" href={ZENITH_APP_URL} target="_blank" rel="noreferrer"><MonitorDown size={18} aria-hidden="true" />Acessar plataforma</a>

@@ -247,7 +247,9 @@ h1 span, h2 span { color: var(--zenith-lime); }
 .workflow-section .eyebrow { color: var(--zenith-lime); }
 .workflow-sticky { position: sticky; top: 92px; display: grid; grid-template-columns: minmax(360px, .9fr) minmax(520px, 1.1fr); gap: clamp(34px, 5vw, 74px); align-items: center; min-height: calc(100vh - 120px); }
 .workflow-visual { min-height: 620px; border: 1px solid var(--border-dark); border-radius: var(--radius-lg); background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), var(--glow-lime); overflow: hidden; }
-.flight-map { position: relative; height: 100%; min-height: 620px; perspective: 900px; }
+.flight-map { position: relative; height: 100%; min-height: 620px; perspective: 900px; background: var(--zenith-black); }
+.flight-map img { width: 100%; height: 100%; min-height: 620px; object-fit: cover; object-position: center; filter: saturate(1.05) contrast(1.04); }
+.flight-map::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,27,20,.05), rgba(6,27,20,.58)), radial-gradient(circle at 50% 38%, transparent 0 24%, rgba(6,27,20,.2) 58%, rgba(6,27,20,.72) 100%); pointer-events: none; }
 .field-row { position: absolute; left: 8%; right: 8%; height: 54px; border-radius: 999px; background: repeating-linear-gradient(90deg, rgba(183,243,74,.24) 0 12px, rgba(21,122,85,.32) 12px 24px); transform: rotateX(58deg) rotateZ(-12deg); transform-origin: center; opacity: .72; }
 .row-a { top: 27%; }
 .row-b { top: 42%; left: 3%; right: 14%; }
@@ -259,6 +261,7 @@ h1 span, h2 span { color: var(--zenith-lime); }
 .data-packet { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--tech-cyan); box-shadow: 0 0 0 8px rgba(37,194,200,.12); }
 .packet-a { right: 24%; top: 32%; }
 .packet-b { right: 14%; bottom: 27%; background: var(--zenith-lime); }
+.flight-label { position: absolute; left: 24px; top: 24px; z-index: 2; padding: 10px 12px; border: 1px solid rgba(37,194,200,.3); border-radius: var(--radius-sm); color: var(--tech-cyan); background: rgba(6,27,20,.62); font-size: .72rem; font-weight: 900; letter-spacing: .1em; }
 .workflow-stage { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; margin-bottom: 34px; }
 .drone-node { padding: 12px 16px; border: 1px solid rgba(183,243,74,.3); border-radius: var(--radius-sm); color: var(--zenith-lime); background: rgba(255,255,255,.06); font-weight: 900; letter-spacing: .08em; }
 .drone-node.alt { color: var(--tech-cyan); border-color: rgba(37,194,200,.34); }
@@ -441,7 +444,32 @@ h1 span, h2 span { color: var(--zenith-lime); }
 .install-section { background: var(--bg-white); }
 .install-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .install-card { display: grid; align-content: start; padding: 28px; border: 1px solid var(--border-light); background: var(--bg-white); box-shadow: var(--shadow-sm); }
-.install-card img { width: 100%; height: 320px; object-fit: cover; object-position: top center; margin-bottom: 26px; border: 1px solid var(--border-light); border-radius: var(--radius-md); }
+.install-preview {
+  width: 100%;
+  height: 380px;
+  display: grid;
+  place-items: center;
+  margin: 0 0 26px;
+  padding: 18px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, rgba(234,245,237,.75), rgba(255,255,255,.96)),
+    var(--bg-primary);
+  overflow: hidden;
+}
+.install-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: calc(var(--radius-md) - 6px);
+  box-shadow: 0 18px 48px rgba(6,27,20,.1);
+}
+.mobile-preview img { width: auto; max-width: min(100%, 230px); }
+.desktop-preview { padding: 16px; }
+.desktop-preview img { max-width: 100%; }
 .install-card p { min-height: 72px; }
 .install-steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 36px; }
 .install-steps::before { content: ""; position: absolute; left: 6%; right: 6%; top: 29px; height: 2px; background: var(--zenith-green); }
@@ -566,7 +594,8 @@ h1 span, h2 span { color: var(--zenith-lime); }
   .status-line { grid-template-columns: 1fr; }
   .account-card.admin { order: 1; }
   .account-card.employee { order: 2; }
-  .install-card img { height: 260px; }
+  .install-preview { height: 300px; padding: 12px; }
+  .mobile-preview { height: 360px; }
   .account-console { padding: 12px; }
   .account-tabs { display: grid; }
   .account-detail { padding: 20px; }
