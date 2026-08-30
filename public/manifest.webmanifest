@@ -1,0 +1,19 @@
+{
+  "name": "Zenith",
+  "short_name": "Zenith",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5F8F4",
+  "theme_color": "#042F24",
+  "description": "Agricultura de precisão para monitoramento e gestão de lavouras de soja.",
+  "icons": [
+    {
+      "src": "/assets/zenith-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
