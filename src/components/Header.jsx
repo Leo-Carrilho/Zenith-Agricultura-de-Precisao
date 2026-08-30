@@ -5,13 +5,40 @@ import { navItems, ZENITH_APP_URL } from "../data/siteData";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState("dark");
+  const [progress, setProgress] = useState(0);
   const menuButtonRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll("main section"));
+    if (!sections.length) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible) {
+          setTheme(visible.target.dataset.headerTheme || "light");
+        }
+      },
+      { rootMargin: "-18% 0px -62% 0px", threshold: [0.12, 0.3, 0.6] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -42,7 +69,8 @@ export function Header() {
   };
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""} theme-${theme}`}>
+      <span className="scroll-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
       <div className="header-shell">
         <a className="brand" href="#inicio" aria-label="Zenith Agro - início" onClick={(event) => handleAnchorClick(event, "#inicio")}>
           <img src="/assets/zenith-logo.png" alt="Zenith Agro" width="50" height="50" />

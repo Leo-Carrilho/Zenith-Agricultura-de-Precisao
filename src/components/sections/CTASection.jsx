@@ -4,7 +4,7 @@ import { ZENITH_APP_URL } from "../../data/siteData";
 
 export function CTASection() {
   return (
-    <section className="section cta-section" id="contato">
+    <section className="section cta-section" id="contato" data-header-theme="dark">
       <div className="container cta-grid">
         <div className="section-copy reveal">
           <span className="eyebrow">Próximo passo</span>

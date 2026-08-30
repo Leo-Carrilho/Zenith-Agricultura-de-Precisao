@@ -3,7 +3,7 @@ import { heroImage } from "../constants/media";
 
 export function Hero() {
   return (
-    <section className="hero section" id="inicio">
+    <section className="hero section" id="inicio" data-header-theme="dark">
       <img className="hero-bg" src={heroImage} alt="" aria-hidden="true" />
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-grid container">
@@ -28,6 +28,12 @@ export function Hero() {
             <span className="hud-corner top-right" />
             <span className="hud-corner bottom-left" />
             <span className="hud-corner bottom-right" />
+          </div>
+          <div className="capture-scan" aria-hidden="true" />
+          <div className="capture-points" aria-hidden="true">
+            <span />
+            <span />
+            <span />
           </div>
           <div className="hero-radar" aria-hidden="true"><Radar size={22} /></div>
           <figcaption className="hero-system-card">

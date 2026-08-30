@@ -3,7 +3,7 @@ import { technologyStack } from "../../data/siteData";
 
 export function TechnologySection() {
   return (
-    <section className="section technology-section" id="tecnologia">
+    <section className="section technology-section" id="tecnologia" data-header-theme="dark">
       <div className="container section-head reveal">
         <span className="eyebrow">Arquitetura</span>
         <h2>Tecnologia por trás do Zenith.</h2>

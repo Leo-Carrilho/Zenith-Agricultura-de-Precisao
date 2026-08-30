@@ -8,6 +8,7 @@ export { ManagementSection } from "./sections/ManagementSection";
 export { OperationCenter } from "./sections/OperationCenter";
 export { PlatformPreview } from "./sections/PlatformPreview";
 export { PlantingVision } from "./sections/PlantingVision";
+export { SignatureSection } from "./sections/SignatureSection";
 export { TeamSection } from "./sections/TeamSection";
 export { TechnologySection } from "./sections/TechnologySection";
 export { ThreeDMonitor } from "./sections/ThreeDMonitor";

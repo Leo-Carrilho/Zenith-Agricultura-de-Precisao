@@ -23,6 +23,13 @@ export function PlatformPreview() {
           <img src="/assets/dashboard.jpeg" alt="Dashboard da plataforma Zenith Agro" loading="lazy" />
           <div className="floating metric-a" aria-hidden="true"><span>Saúde da cultura</span><strong>91%</strong></div>
           <div className="floating metric-b" aria-hidden="true"><span>Talhão ativo</span><strong>03</strong></div>
+          <div className="platform-focus focus-a" aria-hidden="true">Propriedade</div>
+          <div className="platform-focus focus-b" aria-hidden="true">Diagnóstico</div>
+        </div>
+        <div className="platform-journey reveal" aria-label="Jornada visual dentro da plataforma">
+          {["Dashboard", "Propriedade", "Talhão", "Diagnóstico", "IA", "Resultado", "Decisão"].map((step) => (
+            <span key={step}>{step}</span>
+          ))}
         </div>
       </div>
     </section>

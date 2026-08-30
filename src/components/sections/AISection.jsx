@@ -2,7 +2,7 @@ import { BrainCircuit, CheckCircle2, Eye, FileUp, TriangleAlert } from "lucide-r
 
 export function AISection() {
   return (
-    <section className="section ai-section" id="ia">
+    <section className="section ai-section" id="ia" data-header-theme="dark">
       <div className="container ai-console-grid">
         <div className="section-copy reveal">
           <span className="eyebrow">Zenith AI / Modelo em validação</span>

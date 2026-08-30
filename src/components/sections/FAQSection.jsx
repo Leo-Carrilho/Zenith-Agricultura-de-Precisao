@@ -20,7 +20,7 @@ export function FAQSection() {
                 <span>{question}</span>
                 <ChevronDown size={20} aria-hidden="true" />
               </button>
-              <div id={`faq-panel-${index}`} hidden={!isOpen}>
+              <div id={`faq-panel-${index}`} className={`faq-panel ${isOpen ? "is-open" : ""}`} aria-hidden={!isOpen}>
                 <p>{answer}</p>
               </div>
             </article>

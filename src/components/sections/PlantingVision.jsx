@@ -3,7 +3,7 @@ import { computingVision } from "../../constants/media";
 
 export function PlantingVision() {
   return (
-    <section className="section planting-vision" id="visao-computacional">
+    <section className="section planting-vision" id="visao-computacional" data-header-theme="dark">
       <div className="container section-head reveal">
         <span className="eyebrow">Visão computacional</span>
         <h2>Monitoramento visual do plantio.</h2>

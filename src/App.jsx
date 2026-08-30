@@ -13,6 +13,7 @@ import {
   OperationCenter,
   PlatformPreview,
   PlantingVision,
+  SignatureSection,
   TeamSection,
   TechnologySection,
   ThreeDMonitor,
@@ -37,6 +38,7 @@ export default function App() {
         <AboutProject />
         <OperationCenter />
         <WorkflowSection />
+        <SignatureSection />
         <PlatformPreview />
         <AISection />
         <PlantingVision />
