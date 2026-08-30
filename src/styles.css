@@ -100,6 +100,8 @@ h1 span, h2 span { color: var(--zenith-lime); }
   transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 .btn:hover, .header-cta:hover { transform: translateY(-2px); }
+.btn svg, .header-cta svg, .model-link svg, .footer a svg { transition: transform .25s ease; }
+.btn:hover svg, .header-cta:hover svg, .model-link:hover svg, .footer a:hover svg { transform: translateX(4px); }
 .btn.primary { color: var(--zenith-black); background: var(--zenith-lime); box-shadow: 0 18px 46px rgba(183,243,74,.18); }
 .btn.secondary { color: var(--text-primary); background: var(--bg-white); border-color: var(--border-light); }
 .light-button { color: var(--zenith-black) !important; background: var(--zenith-lime) !important; }
@@ -218,7 +220,7 @@ h1 span, h2 span { color: var(--zenith-lime); }
 .hero-system-card p { margin: 8px 0 12px; color: var(--text-dark-muted); font-size: .94rem; }
 .hero-system-card div { display: flex; gap: 8px; color: var(--tech-cyan); }
 
-.flow-card, .resource-card, .workflow-card, .account-card, .install-card, .team-card, .faq-item, .tech-row article, .module-grid article, .ai-flow article, .class-grid article { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius-md); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease; }
+.flow-card, .resource-card, .workflow-card, .account-card, .install-card, .team-card, .faq-item, .tech-row article, .module-grid article, .ai-flow article, .class-grid article { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius-md); will-change: transform; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease; }
 .flow-card:hover, .resource-card:hover, .workflow-card:hover, .account-card:hover, .install-card:hover, .team-card:hover, .faq-item:hover, .tech-row article:hover, .module-grid article:hover { transform: translateY(-6px); }
 
 .about-project { background: var(--bg-primary); }
