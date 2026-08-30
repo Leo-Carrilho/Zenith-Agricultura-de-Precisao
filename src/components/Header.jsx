@@ -73,7 +73,7 @@ export function Header() {
       <span className="scroll-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
       <div className="header-shell">
         <a className="brand" href="#inicio" aria-label="Zenith Agro - início" onClick={(event) => handleAnchorClick(event, "#inicio")}>
-          <img src="/assets/zenith-logo.png" alt="Zenith Agro" width="50" height="50" />
+          <img src="/assets/zenith-logo.png" alt="Zenith Agro" width="30" height="30" />
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navItems.map(([label, href]) => (

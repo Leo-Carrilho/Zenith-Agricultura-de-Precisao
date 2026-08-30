@@ -14,7 +14,9 @@ import {
   UsersRound
 } from "lucide-react";
 
-export const ZENITH_APP_URL = import.meta.env.VITE_ZENITH_APP_URL || "https://zenith-desktop2.vercel.app/";
+export const ZENITH_MOBILE_APP_URL = import.meta.env.VITE_ZENITH_MOBILE_APP_URL || "https://instalacao-mobile.vercel.app/";
+export const ZENITH_DESKTOP_APP_URL = import.meta.env.VITE_ZENITH_DESKTOP_APP_URL || "https://zenith-desktop-v2.vercel.app/";
+export const ZENITH_APP_URL = ZENITH_DESKTOP_APP_URL;
 
 export const navItems = [
   ["Início", "#inicio"],

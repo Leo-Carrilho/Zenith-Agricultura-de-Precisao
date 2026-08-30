@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import { ZENITH_DESKTOP_APP_URL, ZENITH_MOBILE_APP_URL } from "../data/siteData";
 
 const isIos = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+const isMobileDevice = () =>
+  /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(window.navigator.userAgent) ||
+  window.matchMedia("(pointer: coarse) and (max-width: 820px)").matches;
 
 const isStandalone = () =>
   window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
@@ -41,7 +45,15 @@ export function useInstallPrompt() {
     return "desktop";
   }, []);
 
+  const installTarget = platform === "desktop" && !isMobileDevice() ? ZENITH_DESKTOP_APP_URL : ZENITH_MOBILE_APP_URL;
+
   const install = async () => {
+    if (window.location.origin !== new URL(installTarget).origin) {
+      setMessage(platform === "desktop" ? "Abrindo a instalação para computador." : "Abrindo a instalação para celular.");
+      window.location.href = installTarget;
+      return true;
+    }
+
     if (installed) {
       setMessage("O Zenith já parece estar instalado. Você pode abrir a plataforma normalmente.");
       return false;
@@ -63,5 +75,5 @@ export function useInstallPrompt() {
     return result.outcome === "accepted";
   };
 
-  return { canInstall: Boolean(promptEvent), installed, install, message, platform };
+  return { canInstall: Boolean(promptEvent), installed, install, message, platform, installTarget };
 }
