@@ -8,7 +8,7 @@ export const droneImage =
   "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=82";
 
 export const computingVision = 
-  "/assets/lavoura_cafe.png";
+  "/assets/lavoura_cafe.webp";
 
 export const dashboardDesktop = 
   "/assets/dashboard.jpeg";

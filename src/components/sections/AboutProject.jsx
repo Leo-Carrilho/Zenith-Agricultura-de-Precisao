@@ -2,10 +2,10 @@ import { operationFlow } from "../../data/siteData";
 
 export function AboutProject() {
   return (
-    <section className="section about-project" id="sobre">
+    <section className="section about-project" id="sobre" tabIndex={-1}>
       <div className="container two-column">
         <div className="section-copy reveal">
-          <span className="eyebrow">01 / Sobre o projeto</span>
+          <span className="eyebrow">Sobre o projeto</span>
           <h2>O campo produz dados. O Zenith transforma em informação.</h2>
         </div>
         <div className="body-copy reveal">

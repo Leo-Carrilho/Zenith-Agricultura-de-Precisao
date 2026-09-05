@@ -1,10 +1,11 @@
-import { ArrowRight, Download, History, Radar, ScanLine, Sprout } from "lucide-react";
-import { heroImage } from "../constants/media";
+import { ArrowRight, History, Radar, ScanLine, Sprout } from "lucide-react";
+import { PlatformCTA } from "./PlatformCTA";
+import "./Hero.css";
 
 export function Hero() {
   return (
-    <section className="hero section" id="inicio" data-header-theme="dark">
-      <img className="hero-bg" src={heroImage} alt="" aria-hidden="true" />
+    <section className="hero section" id="inicio" tabIndex={-1} data-header-theme="dark">
+      <img className="hero-bg" src="/assets/zenith-hero-960.webp" srcSet="/assets/zenith-hero-480.webp 480w, /assets/zenith-hero-960.webp 960w" sizes="100vw" alt="" aria-hidden="true" width="960" height="1280" />
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-grid container">
         <div className="hero-copy">
@@ -13,7 +14,7 @@ export function Hero() {
           <p>O Zenith integra imagens capturadas por drones, inteligência artificial e ferramentas de gestão para apoiar o monitoramento de lavouras de soja.</p>
           <div className="hero-actions">
             <a className="btn primary" href="#sobre">Conhecer o projeto <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="btn secondary" href="#instalacao">Instalar aplicativo <Download size={18} aria-hidden="true" /></a>
+            <PlatformCTA className="btn secondary" />
           </div>
           <div className="hero-chips" aria-label="Destaques do projeto">
             <span>PWA responsiva</span>
@@ -22,7 +23,7 @@ export function Hero() {
           </div>
         </div>
         <figure className="hero-media drone-hud">
-          <img src={heroImage} alt="Drone sobrevoando uma plantação de soja" width="420" height="460" />
+          <img src="/assets/zenith-hero-960.webp" alt="Drone sobrevoando uma plantação de soja" width="960" height="1280" srcSet="/assets/zenith-hero-480.webp 480w, /assets/zenith-hero-960.webp 960w" sizes="(max-width: 767px) 100vw, 46vw" fetchpriority="high" />
           <div className="hud-frame" aria-hidden="true">
             <span className="hud-corner top-left" />
             <span className="hud-corner top-right" />

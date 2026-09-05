@@ -1,22 +1,11 @@
-import { ArrowRight } from "lucide-react";
-import { fieldImage } from "../../constants/media";
-import { ZENITH_APP_URL } from "../../data/siteData";
-
+import { MapPin } from "lucide-react";
+import { PlatformCTA } from "../PlatformCTA";
 export function CTASection() {
-  return (
-    <section className="section cta-section" id="contato" data-header-theme="dark">
-      <div className="container cta-grid">
-        <div className="section-copy reveal">
-          <span className="eyebrow">Próximo passo</span>
-          <h2>Conheça uma nova forma de acompanhar o campo.</h2>
-          <p>Explore o Zenith e veja como imagens, análises e informações da propriedade podem ficar organizadas em uma única plataforma.</p>
-          <div className="hero-actions">
-            <a className="btn primary light-button" href="#sobre">Explorar o Zenith <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="btn secondary light-outline" href={ZENITH_APP_URL} target="_blank" rel="noreferrer">Acessar plataforma</a>
-          </div>
-        </div>
-        <img src={fieldImage} alt="Faixa de lavoura usada como imagem final do Zenith" loading="lazy" />
-      </div>
-    </section>
-  );
+  return <section className="section cta-section" id="contato" tabIndex={-1}>
+    <div className="container cta-grid">
+      <div className="section-copy reveal"><span className="eyebrow">SEU PRÓXIMO PASSO</span><h2>Um olhar mais preciso.<br />Uma decisão mais segura.</h2><p>Conheça a Zenith e conecte imagens, análises e informações da sua propriedade.</p><div className="hero-actions"><PlatformCTA /><a className="btn secondary" href="#equipe">Conhecer a equipe</a></div></div>
+      <div className="contact-note reveal"><MapPin size={28} aria-hidden="true" /><span className="eyebrow">AMERICANA · SÃO PAULO</span><h3>Tecnologia com os pés no campo.</h3><p>Zenith Agro é um projeto acadêmico e tecnológico em agricultura de precisão.</p><a href="#equipe">Conheça os responsáveis pelo projeto →</a></div>
+    </div>
+  </section>;
 }
+

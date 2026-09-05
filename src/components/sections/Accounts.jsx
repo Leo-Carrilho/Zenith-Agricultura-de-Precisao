@@ -51,15 +51,25 @@ export function Accounts() {
               type="button"
               role="tab"
               aria-selected={active === key}
+              id={`account-tab-${key}`}
+              aria-controls="account-panel"
+              tabIndex={active === key ? 0 : -1}
               className={active === key ? "is-active" : ""}
               onClick={() => setActive(key)}
+              onKeyDown={(event) => {
+                if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+                event.preventDefault();
+                const next = event.key === "Home" ? "admin" : event.key === "End" ? "employee" : active === "admin" ? "employee" : "admin";
+                setActive(next);
+                document.getElementById(`account-tab-${next}`)?.focus();
+              }}
             >
               <item.Icon size={18} aria-hidden="true" />
               {item.label}
             </button>
           ))}
         </div>
-        <div className={`account-detail ${active}`}>
+        <div className={`account-detail ${active}`} id="account-panel" role="tabpanel" aria-labelledby={`account-tab-${active}`} tabIndex={0}>
           <div>
             <Icon size={34} aria-hidden="true" />
             <span className="permission-label">{profile.eyebrow}</span>

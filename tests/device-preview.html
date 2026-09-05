@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zenith — device fixture</title></head>
+<body><div id="root"></div>
+<script type="module">
+  // Development-only fixture: excluded from the production build.
+  const params = new URLSearchParams(location.search);
+  const devices = {
+    iphone: {userAgent:"Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) Mobile/15 Safari",platform:"iPhone",maxTouchPoints:5,userAgentData:undefined},
+    android: {userAgent:"Mozilla/5.0 (Linux; Android 15) Chrome/130 Mobile Safari",platform:"Linux armv8l",maxTouchPoints:5,userAgentData:{mobile:true,platform:"Android"}},
+    ipad: {userAgent:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) Safari",platform:"MacIntel",maxTouchPoints:5,userAgentData:undefined},
+    unknown: {userAgent:"Unrecognized agent",platform:"",maxTouchPoints:0,userAgentData:undefined}
+  };
+  const device = devices[params.get("device")];
+  if (device) for (const [key,value] of Object.entries(device)) Object.defineProperty(navigator,key,{configurable:true,value});
+  if (params.get("motion") === "reduce") {
+    const original = window.matchMedia.bind(window);
+    window.matchMedia = query => {
+      if (!query.includes("prefers-reduced-motion")) return original(query);
+      return { matches: query.includes(": reduce"), media: query, addEventListener(){},removeEventListener(){},addListener(){},removeListener(){} };
+    };
+  }
+  const route = params.get("route");
+  if (route && ["/dispositivo-incompativel","/acessar-plataforma","/instalar-aplicativo"].includes(route.split("?")[0])) history.replaceState(null,"",route);
+  await import("/src/main.jsx");
+</script></body></html>

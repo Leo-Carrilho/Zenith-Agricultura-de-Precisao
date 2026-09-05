@@ -13,13 +13,11 @@ export function AISection() {
         <div className="ai-console reveal" aria-label="Painel simulado de diagnóstico com IA">
           <div className="console-header">
             <span>ANÁLISE ZENITH AI</span>
-            <strong><CheckCircle2 size={17} aria-hidden="true" /> Análise concluída</strong>
+            <strong><CheckCircle2 size={17} aria-hidden="true" /> Modelo em validação</strong>
           </div>
-          <div className="console-metrics">
-            <article><span>Saúde da cultura</span><strong>91%</strong><i /></article>
-            <article><span>Área analisada</span><strong>12,4 ha</strong><i /></article>
-            <article><span>Anomalias</span><strong>03</strong><i className="warning" /></article>
-            <article><span>Confiança da IA</span><strong>96,4%</strong><i /></article>
+          <div className="ai-sample">
+            <img src="/assets/Teste_soja.webp" alt="Imagem de referência de folha de soja com manchas" width="500" height="300" loading="lazy" />
+            <div><span>VISÃO COMPUTACIONAL</span><strong>Da imagem à interpretação.</strong><span>Identificação de padrões visuais para apoiar a avaliação da soja.</span></div>
           </div>
           <div className="ai-flow" aria-label="Fluxo de diagnóstico com IA">
             {[[FileUp, "Enviar imagem"], [BrainCircuit, "Processando"], [Eye, "Resultado"]].map(([Icon, label]) => (

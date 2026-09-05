@@ -1,19 +1,30 @@
-import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Box } from "lucide-react";
 
 const MODEL_3D_URL = "https://tccamsamericana-zenith-modelo-3d.static.hf.space/";
 
 export function ThreeDMonitor() {
+  const [loaded, setLoaded] = useState(false);
+  const [status, setStatus] = useState("idle");
+  useEffect(() => {
+    if (status !== "loading") return;
+    const timeout = window.setTimeout(() => setStatus("slow"), 15000);
+    return () => window.clearTimeout(timeout);
+  }, [status]);
   return (
     <section className="section three-d" id="monitoramento-3d">
       <div className="container terrain-grid">
         <div className="modelo-3d reveal">
-          <iframe
+          {loaded ? <iframe
             src={MODEL_3D_URL}
             title="Prévia 3D Zenith"
             loading="lazy"
             allow="fullscreen"
             allowFullScreen
-          />
+            onLoad={() => setStatus("ready")}
+            onError={() => setStatus("slow")}
+          /> : <div className="model-placeholder"><Box aria-hidden="true" /><strong>Explore a área em três dimensões.</strong><p>Abra a prévia interativa do protótipo Zenith.</p><button type="button" className="btn primary" onClick={() => { setStatus("loading"); setLoaded(true); }}>Carregar modelo 3D <ArrowRight size={18} aria-hidden="true" /></button></div>}
+          {loaded && status !== "ready" && <div className="model-loading" role="status"><Box size={32} aria-hidden="true" /><p>{status === "slow" ? "A prévia está demorando para responder. Você também pode abrir o modelo em tela cheia." : "Carregando a prévia interativa…"}</p><a className="btn secondary" href={MODEL_3D_URL} target="_blank" rel="noreferrer">Abrir em tela cheia <ArrowRight size={16} aria-hidden="true" /></a></div>}
         </div>
         <div className="section-copy reveal">
           <span className="eyebrow">Protótipo em integração controlada</span>

@@ -6,7 +6,7 @@ export function WorkflowSection() {
       <div className="container workflow-sticky">
         <div className="workflow-visual reveal">
           <div className="flight-map" aria-hidden="true">
-            <img src="/assets/imagem_drone.png" alt="" loading="lazy" />
+            <img src="/assets/imagem_drone.webp" alt="" width="720" height="960" loading="lazy" />
             <span className="scan-window" />
             <span className="data-packet packet-a" />
             <span className="data-packet packet-b" />

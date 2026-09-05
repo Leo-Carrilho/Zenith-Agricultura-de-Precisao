@@ -8,10 +8,10 @@ export function ManagementSection() {
         <h2>Análise e gestão em um só lugar.</h2>
       </div>
       <div className="container property-panel reveal" aria-label="Resumo da propriedade">
-        <article><span>Propriedade</span><strong>Zenith Demo</strong></article>
-        <article><span>Área monitorada</span><strong>12,4 ha</strong></article>
-        <article><span>Talhões</span><strong>05</strong></article>
-        <article><span>Voos realizados</span><strong>18</strong></article>
+        <article><span>Organização</span><strong>Por propriedade</strong></article>
+        <article><span>Acompanhamento</span><strong>Por talhão</strong></article>
+        <article><span>Equipe e atividades</span><strong>Tarefas e responsáveis</strong></article>
+        <article><span>Registros</span><strong>Histórico de campo</strong></article>
       </div>
       <div className="container module-grid stagger">
         {managementModules.map(([Icon, title, text]) => (

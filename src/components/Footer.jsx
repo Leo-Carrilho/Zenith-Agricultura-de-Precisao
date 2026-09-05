@@ -1,35 +1,12 @@
-import { ArrowRight } from "lucide-react";
-import { navItems, ZENITH_APP_URL } from "../data/siteData";
-
+import { navItems } from "../data/siteData";
+import { Brand } from "./Header";
+import { PlatformCTA } from "./PlatformCTA";
 export function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <img src="/assets/zenith-logo.png" alt="Zenith Agro" width="118" height="70" />
-          <h2>Zenith Agro</h2>
-          <p>Plataforma de agricultura de precisão para monitoramento e gestão de lavouras de soja.</p>
-        </div>
-        <nav aria-label="Navegação do rodapé">
-          <strong>Navegação</strong>
-          {navItems.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
-        </nav>
-        <nav aria-label="Acesso">
-          <strong>Acesso</strong>
-          <a href={ZENITH_APP_URL} target="_blank" rel="noreferrer">Acessar plataforma <ArrowRight size={14} aria-hidden="true" /></a>
-          <a href="#instalacao">Instalação PWA</a>
-          <a href="#faq">Perguntas frequentes</a>
-        </nav>
-        <div className="footer-place">
-          <strong>Localização</strong>
-          <span>Americana - SP</span>
-          <span>Projeto Zenith Agro</span>
-        </div>
-      </div>
-      <div className="container footer-bottom">
-        <span>© 2026 Zenith Agro.</span>
-        <span>Projeto acadêmico e tecnológico em agricultura de precisão.</span>
-      </div>
-    </footer>
-  );
+  return <footer className="footer"><div className="container footer-grid">
+    <div className="footer-brand"><Brand /><p>Plataforma de agricultura de precisão para monitoramento e gestão de lavouras de soja.</p></div>
+    <nav aria-label="Navegação do rodapé"><strong>Explore</strong>{navItems.map(([label,href])=><a key={href} href={`/${href}`}>{label}</a>)}</nav>
+    <nav aria-label="Acesso"><strong>Uma Zenith. Dois ambientes.</strong><PlatformCTA intent="desktop" className="footer-link" /><PlatformCTA intent="mobile" className="footer-link">Versão mobile</PlatformCTA><a href="/#instalacao">Como instalar</a><a href="/#faq">Perguntas frequentes</a></nav>
+    <nav aria-label="Projeto"><strong>O projeto</strong><a href="/#equipe">Nossa equipe</a><a href="/#como-funciona">Como funciona</a><span>Americana — SP</span><span>Zenith Agro</span></nav>
+  </div><div className="container footer-bottom"><span>© 2026 Zenith Agro.</span><span>Projeto acadêmico e tecnológico em agricultura de precisão.</span></div></footer>;
 }
+

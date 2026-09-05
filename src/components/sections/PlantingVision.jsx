@@ -16,14 +16,14 @@ export function PlantingVision() {
             <span>Análise</span>
           </div>
           <div className="preview-image">
-            <img src={computingVision} alt="Simulação de monitoramento visual de plantio de soja" loading="lazy" />
+            <img src={computingVision} alt="Imagem aérea de fileiras de cultivo usada na demonstração visual" width="474" height="355" loading="lazy" />
             <div className="row-lines" aria-hidden="true" />
             <div className="analysis-marks" aria-hidden="true">
-              <span className="mark vegetation"><b>TARGET DETECTED</b></span>
-              <span className="mark attention"><b>ZONE 03</b></span>
-              <span className="mark critical"><b>ANOMALY</b></span>
+              <span className="mark vegetation"><b>VEGETAÇÃO</b></span>
+              <span className="mark attention"><b>ATENÇÃO</b></span>
+              <span className="mark critical"><b>CONFERIR</b></span>
               <span className="route" />
-              <em className="vision-label">CONFIDENCE 96.4%</em>
+              <em className="vision-label">DEMONSTRAÇÃO VISUAL</em>
             </div>
           </div>
           <div className="analysis-legend">

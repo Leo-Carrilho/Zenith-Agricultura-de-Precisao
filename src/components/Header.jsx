@@ -1,98 +1,59 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
-import { navItems, ZENITH_APP_URL } from "../data/siteData";
+import { Menu, X } from "lucide-react";
+import { navItems } from "../data/siteData";
+import { PlatformCTA } from "./PlatformCTA";
 
+export function Brand() {
+  return <a className="brand" href="/#inicio" aria-label="Zenith Agro — início"><img src="/assets/zenith-logo.webp" alt="" width="48" height="48" /><span>ZENITH<small>AGRICULTURA DE PRECISÃO</small></span></a>;
+}
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState("dark");
-  const [progress, setProgress] = useState(0);
-  const menuButtonRef = useRef(null);
-
+  const trigger = useRef(null);
+  const panel = useRef(null);
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 12);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    panel.current.querySelector("a")?.focus();
+    const close = () => { setOpen(false); trigger.current?.focus(); };
+    const onKey = (event) => {
+      if (event.key === "Escape") close();
+      if (event.key === "Tab") {
+        const links = [...panel.current.querySelectorAll("a")];
+        const focusable = [trigger.current, ...links];
+        const index = focusable.indexOf(document.activeElement);
+        if (event.shiftKey && index === 0) { event.preventDefault(); links.at(-1)?.focus(); }
+        if (!event.shiftKey && index === focusable.length - 1) { event.preventDefault(); trigger.current?.focus(); }
+      }
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = Array.from(document.querySelectorAll("main section"));
-    if (!sections.length) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible) {
-          setTheme(visible.target.dataset.headerTheme || "light");
-        }
-      },
-      { rootMargin: "-18% 0px -62% 0px", threshold: [0.12, 0.3, 0.6] }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const onWide = () => { if (wide.matches) close(); };
+    document.addEventListener("keydown", onKey);
+    wide.addEventListener("change", onWide);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
     };
   }, [open]);
-
-  const closeMenu = () => {
+  const onNavigate = (href) => {
     setOpen(false);
-    requestAnimationFrame(() => menuButtonRef.current?.focus());
+    requestAnimationFrame(() => document.getElementById(href.slice(1))?.focus({ preventScroll: true }));
   };
-
-  const handleAnchorClick = (event, href, shouldFocusButton = false) => {
-    if (!href.startsWith("#")) return;
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    event.preventDefault();
-    setOpen(false);
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.pushState(null, "", href);
-
-    if (shouldFocusButton) {
-      requestAnimationFrame(() => menuButtonRef.current?.focus());
-    }
-  };
-
-  return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""} theme-${theme}`}>
-      <span className="scroll-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
-      <div className="header-shell">
-        <a className="brand" href="#inicio" aria-label="Zenith Agro - início" onClick={(event) => handleAnchorClick(event, "#inicio")}>
-          <img src="/assets/zenith-logo.png" alt="Zenith Agro" width="30" height="30" />
-        </a>
-        <nav className="desktop-nav" aria-label="Navegação principal">
-          {navItems.map(([label, href]) => (
-            <a key={label} href={href} onClick={(event) => handleAnchorClick(event, href)}>{label}</a>
-          ))}
-        </nav>
-        <a className="header-cta" href={ZENITH_APP_URL} target="_blank" rel="noreferrer">
-          Acessar plataforma <ArrowRight size={17} aria-hidden="true" />
-        </a>
-        <button ref={menuButtonRef} className="menu-button" type="button" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((value) => !value)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-      <nav id="mobile-menu" className={`mobile-panel ${open ? "is-open" : ""}`} aria-label="Navegação mobile">
-        {navItems.map(([label, href]) => (
-          <a key={label} href={href} onClick={(event) => handleAnchorClick(event, href, true)}>{label}</a>
-        ))}
-        <a className="mobile-cta" href={ZENITH_APP_URL} target="_blank" rel="noreferrer" onClick={closeMenu}>Acessar plataforma</a>
-      </nav>
-    </header>
-  );
+  return <header className="site-header">
+    <a className="skip-link" href="#main">Pular para o conteúdo</a>
+    <div className="container header-shell">
+      <Brand />
+      <nav className="desktop-nav" aria-label="Navegação principal">{navItems.map(([label, href]) => <a key={href} href={`/${href}`}>{label}</a>)}</nav>
+      <PlatformCTA className="btn primary header-cta" />
+      <button ref={trigger} className="menu-button" type="button" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button>
+    </div>
+    {open && <button className="menu-backdrop" aria-label="Fechar navegação" tabIndex={-1} onClick={() => { setOpen(false); trigger.current?.focus(); }} />}
+    <nav ref={panel} id="mobile-menu" className={`mobile-panel ${open ? "is-open" : ""}`} aria-label="Navegação mobile" hidden={!open}>
+      {navItems.map(([label, href], index) => <a key={href} href={`/${href}`} onClick={() => onNavigate(href)}><span>{label}</span><small>0{index + 1}</small></a>)}
+      <PlatformCTA onClick={() => setOpen(false)} />
+      <span className="menu-caption">Sua precisão agrícola no ponto mais alto.</span>
+    </nav>
+  </header>;
 }
+
