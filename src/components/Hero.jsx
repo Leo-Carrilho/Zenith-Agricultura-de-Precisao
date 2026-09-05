@@ -1,6 +1,6 @@
 import { ArrowRight, History, Radar, ScanLine, Sprout } from "lucide-react";
 import { PlatformCTA } from "./PlatformCTA";
-import "./Hero.css";
+import "../styles.css";
 
 export function Hero() {
   return (
