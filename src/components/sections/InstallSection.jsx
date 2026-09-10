@@ -10,7 +10,7 @@ export function InstallSection() {
         <PlatformCTA intent="mobile">Instalar aplicativo</PlatformCTA>
       </article>
       <article className="install-card reveal">
-        <figure className="install-preview desktop-preview"><img src="/assets/dashboard.webp" alt="Captura da interface web Zenith" width="1600" height="620" loading="lazy" /></figure>
+        <figure className="install-preview desktop-preview"><img src="/assets/dashboard.jpeg" alt="Captura da interface web Zenith" width="1600" height="620" loading="lazy" /></figure>
         <h3>Zenith no computador</h3><p>Análises detalhadas, gestão da equipe e visualização dos módulos em telas maiores. Acesse diretamente pelo navegador do seu computador ou notebook.</p>
         <PlatformCTA intent="desktop" className="btn secondary" />
       </article>

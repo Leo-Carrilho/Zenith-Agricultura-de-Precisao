@@ -1,4 +1,4 @@
-import { ArrowRight, History, Radar, ScanLine, Sprout } from "lucide-react";
+import { ArrowRight, History, MapPin, Radar, ScanLine, Sparkles, Sprout } from "lucide-react";
 import { PlatformCTA } from "./PlatformCTA";
 import "../styles.css";
 
@@ -9,17 +9,16 @@ export function Hero() {
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-grid container">
         <div className="hero-copy">
-          <span className="eyebrow">Zenith AgTech / Agricultura de precisão</span>
+          <span className="eyebrow"><i aria-hidden="true" /> Zenith AgTech / Inteligência de campo</span>
           <h1>Sua precisão agrícola <span>no ponto mais alto.</span></h1>
-          <p>O Zenith integra imagens capturadas por drones, inteligência artificial e ferramentas de gestão para apoiar o monitoramento de lavouras de soja.</p>
+          <p>Imagens aéreas, visão computacional e gestão integrada em um único fluxo para acompanhar sua lavoura de soja com contexto.</p>
           <div className="hero-actions">
             <a className="btn primary" href="#sobre">Conhecer o projeto <ArrowRight size={18} aria-hidden="true" /></a>
             <PlatformCTA className="btn secondary" />
           </div>
-          <div className="hero-chips" aria-label="Destaques do projeto">
-            <span>PWA responsiva</span>
-            <span>IA aplicada à soja</span>
-            <span>Gestão integrada</span>
+          <div className="hero-proof" aria-label="Destaques do projeto">
+            <span><Sparkles size={16} aria-hidden="true" /> Visão computacional</span>
+            <span><MapPin size={16} aria-hidden="true" /> Talhões organizados</span>
           </div>
         </div>
         <figure className="hero-media drone-hud">
@@ -38,9 +37,9 @@ export function Hero() {
           </div>
           <div className="hero-radar" aria-hidden="true"><Radar size={22} /></div>
           <figcaption className="hero-system-card">
-            <span>Análise recente</span>
-            <strong>Imagem recebida</strong>
-            <p>Registro pronto para processamento e acompanhamento.</p>
+            <span><i aria-hidden="true" /> Operação em campo</span>
+            <strong>Imagem pronta para análise</strong>
+            <p>Registro aéreo conectado ao histórico da propriedade.</p>
             <div><Sprout size={16} /><History size={16} /><ScanLine size={16} /></div>
           </figcaption>
         </figure>

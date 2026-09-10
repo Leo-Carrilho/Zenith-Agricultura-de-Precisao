@@ -20,7 +20,7 @@ export function PlatformPreview() {
             <strong>Zenith Console</strong>
             <em>Prévia da interface</em>
           </div>
-          <img src="/assets/dashboard.webp" alt="Captura da plataforma Zenith Agro, com dados de demonstração" width="1600" height="620" loading="lazy" />
+          <img src="/assets/dashboard.jpeg" alt="Captura da plataforma Zenith Agro, com dados de demonstração" width="1600" height="620" loading="lazy" />
         </div>
         <div className="platform-journey reveal" aria-label="Jornada visual dentro da plataforma">
           {["Dashboard", "Propriedade", "Talhão", "Diagnóstico", "IA", "Resultado", "Decisão"].map((step) => (
