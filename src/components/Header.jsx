@@ -40,7 +40,8 @@ export function Header() {
     setOpen(false);
     requestAnimationFrame(() => document.getElementById(href.slice(1))?.focus({ preventScroll: true }));
   };
-  return <header className="site-header">
+  const isHome = window.location.pathname.replace(/\/+$/, "") === "";
+  return <header className={`site-header${isHome ? " site-header--hero" : ""}`}>
     <a className="skip-link" href="#main">Pular para o conteúdo</a>
     <div className="container header-shell">
       <Brand />
@@ -56,4 +57,3 @@ export function Header() {
     </nav>
   </header>;
 }
-
