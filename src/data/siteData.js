@@ -70,7 +70,7 @@ export const technologyStack = [
 
 export const team = [
   ["Leonardo", "Front-end e experiência PWA", "Interface, responsividade, instalação como app e experiência visual do Zenith.", "LC", BarChart3],
-  ["Octavio", "Inteligência Artificial e visão computacional", "Modelos de análise, processamento de imagens e validação técnica dos resultados.", "OR", BrainCircuit],
+  ["Octavio", "Inteligência Artificial e visão computacional", "Modelos de análise, processamento de imagens e validação técnica dos resultados, estudando técnicas agrícolas.", "OR", BrainCircuit],
   ["Samuel", "Aplicativo mobile e integração", "Fluxos mobile, integração entre serviços, testes e suporte à experiência em campo.", "SR", Smartphone],
   ["Pietro Gimenez", "App Desktop", "Desenvolvimento da aplicação para computador, adaptação de fluxos e suporte ao uso em ambiente desktop.", "PG", Monitor]
 ];

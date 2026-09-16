@@ -10,6 +10,7 @@ import {
   FAQSection,
   InstallSection,
   ManagementSection,
+  MultispectralSection,
   OperationCenter,
   PlatformPreview,
   PlantingVision,
@@ -54,6 +55,7 @@ export default function App() {
         <Hero />
         <OperationCenter />
         <WorkflowSection />
+        <MultispectralSection />
         <SignatureSection />
         <PlatformPreview />
         <AISection />
