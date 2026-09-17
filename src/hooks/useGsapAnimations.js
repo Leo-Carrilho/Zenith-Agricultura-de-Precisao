@@ -67,8 +67,8 @@ function initHeroParallax(root, amount) {
     .to(q(".hero-highlights"), { y: -amount(PARALLAX.card), ease: "none" }, 0)
     .to(q(".hero-visual"), { x: amount(18), y: -amount(PARALLAX.hero), rotation: 0.7, ease: "none" }, 0)
     .to(q(".hero-media > img"), { scale: 1.06, y: amount(14), ease: "none" }, 0)
-    .to(q(".vigor-card"), { x: amount(10), y: -amount(24), ease: "none" }, 0)
-    .to(q(".field-card"), { x: -amount(14), y: -amount(36), ease: "none" }, 0);
+    .to(q(".hero-stat-card--health"), { x: amount(8), y: -amount(16), ease: "none" }, 0)
+    .to(q(".hero-stat-card--field"), { x: -amount(10), y: -amount(20), ease: "none" }, 0);
 }
 
 function initFeaturesParallax(root, amount) {

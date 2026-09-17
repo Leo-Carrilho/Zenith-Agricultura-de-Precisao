@@ -4,7 +4,7 @@ import { navItems } from "../data/siteData";
 import { PlatformCTA } from "./PlatformCTA";
 
 export function Brand() {
-  return <a className="brand" href="/#inicio" aria-label="Zenith Agro — início"><img src="/assets/zenith-logo.webp" alt="" width="48" height="48" /><span>ZENITH<small>AGRICULTURA DE PRECISÃO</small></span></a>;
+  return <a className="brand" href="/#inicio" aria-label="Zenith Agro — início"><img src="/assets/zenith-logo.webp" alt="" width="48" height="48" /><span>ZENITH</span></a>;
 }
 export function Header() {
   const [open, setOpen] = useState(false);
