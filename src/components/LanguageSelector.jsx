@@ -115,10 +115,16 @@ export function LanguageSelector() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    translateTextNodes(language);
-    const observer = new MutationObserver(() => translateTextNodes(language));
+    let frame = requestAnimationFrame(() => translateTextNodes(language));
+    const observer = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => translateTextNodes(language));
+    });
     observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, [language]);
 
   const selectLanguage = (code) => {
