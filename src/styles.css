@@ -40,8 +40,10 @@ body {
   font-family:Inter,"Segoe UI",sans-serif;
   color:var(--text-primary);
   background:var(--background);
-  -webkit-font-smoothing:antialiased
+  -webkit-font-smoothing:antialiased;
+  top:0!important
 }
+
 
 a {
   color:inherit;
@@ -306,6 +308,13 @@ button:disabled {
   border-radius:10px
 }
 
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto
+}
+
 .menu-button {
   display:none;
   place-items:center;
@@ -518,6 +527,64 @@ button:disabled {
   margin:24px 0 20px;
   border-radius:12px;
   background:var(--background)
+}
+
+.language-selector {
+  position:relative;
+  flex-shrink:0
+}
+
+.language-button,.language-menu button {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:40px;
+  border:1px solid #c8dac4;
+  border-radius:11px;
+  background:#f9fcf7;
+  color:var(--primary);
+  font-size:.8125rem;
+  font-weight:600
+}
+
+.language-button {
+  padding:8px 12px;
+  box-shadow:0 2px 8px #173d2b0a;
+  transition:background var(--transition),border-color var(--transition),box-shadow var(--transition),transform var(--transition)
+}
+
+.language-button:hover,.language-button[aria-expanded="true"] {
+  background:var(--secondary);
+  border-color:#9abb92;
+  box-shadow:0 5px 14px #173d2b12
+}
+
+.language-menu {
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  display:grid;
+  min-width:132px;
+  padding:5px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface);
+  box-shadow:var(--shadow-md)
+}
+
+.language-menu button {
+  justify-content:flex-start;
+  width:100%;
+  min-height:36px;
+  padding:7px 10px;
+  border:0;
+  background:transparent;
+  color:var(--text-secondary)
+}
+
+.language-menu button:hover,.language-menu button[aria-selected="true"] {
+  background:var(--surface-soft);
+  color:var(--primary)
 }
 
 .feature-visual img {
@@ -1904,7 +1971,7 @@ button:disabled {
 }
 
 @media(max-width:1023px) {
-  .desktop-nav,.header-cta {
+  .desktop-nav,.header-actions {
     display:none
   }
 
@@ -1918,6 +1985,21 @@ button:disabled {
 
   .planting-card,.ai-console-grid,.platform-grid {
     grid-template-columns:1fr
+  }
+
+  .header-shell>.language-selector {
+    margin-left:auto
+  }
+
+  .mobile-panel .language-selector {
+    display:flex;
+    justify-content:flex-start;
+    margin-top:18px
+  }
+
+  .mobile-panel .language-menu {
+    left:0;
+    right:auto
   }
 
   .multispectral-intro {
@@ -2141,6 +2223,15 @@ button:disabled {
 }
 
 @media(max-width:479px) {
+  .language-button span {
+    display:none
+  }
+
+  .language-button {
+    width:44px;
+    justify-content:center;
+    padding:0
+  }
   .property-panel {
     grid-template-columns:1fr
   }
