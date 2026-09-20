@@ -1,0 +1,43 @@
+
+
+.about-metrics {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:28px;
+  gap:16px
+}
+
+.about-metrics article {
+  padding-top:16px;
+  border-top:1px solid var(--border)
+}
+
+.about-metrics strong,.about-metrics span {
+  display:block
+}
+
+.about-metrics strong {
+  font-size:1.5rem;
+  font-weight:600
+}
+
+.about-metrics span {
+  color:var(--text-secondary);
+  font-size:.75rem;
+  margin-top:5px
+}
+
+@media(max-width:479px) {
+
+  .about-metrics {
+    gap:10px
+  }
+
+  .about-metrics strong {
+    font-size:1.25rem
+  }
+
+  .about-metrics span {
+    font-size:.6875rem
+  }
+}

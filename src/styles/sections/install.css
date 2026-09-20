@@ -1,0 +1,105 @@
+
+
+.install-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:start;
+  gap:24px
+}
+
+.install-card {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding:28px
+}
+
+.install-preview {
+  width:100%;
+  height:290px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  padding:20px;
+  background:var(--background);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  margin-bottom:24px
+}
+
+.install-preview img {
+  width:100%;
+  max-height:100%;
+  object-fit:contain
+}
+
+.install-card h3 {
+  margin-bottom:10px
+}
+
+.install-card p {
+  font-size:.875rem
+}
+
+.install-card .btn {
+  margin-top:auto
+}
+
+.install-help {
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  font-size:.875rem;
+  background:var(--background);
+  width:100%;
+  margin-block:16px
+}
+
+.install-help summary {
+  cursor:pointer;
+  min-height:24px;
+  font-weight:600
+}
+
+.install-help p {
+  margin:14px 0 0
+}
+
+.install-steps {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-top:32px
+}
+
+.install-steps>span {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:.875rem
+}
+
+.install-steps strong {
+  color:var(--primary);
+  font-weight:500
+}
+
+@media(max-width:767px) {
+
+  .install-grid {
+    grid-template-columns:1fr
+  }
+
+  .install-card {
+    padding:24px
+  }
+
+  .install-card .btn {
+    width:100%
+  }
+
+  .install-steps {
+    grid-template-columns:1fr 1fr;
+    gap:18px
+  }
+}

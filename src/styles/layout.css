@@ -1,0 +1,150 @@
+
+
+.container {
+  width:min(calc(100% - 64px),var(--container));
+  margin-inline:auto
+}
+
+.section {
+  padding-block:88px;
+  scroll-margin-top:0
+}
+
+.section+.section {
+  border-top:1px solid var(--border)
+}
+
+.section-head {
+  margin-bottom:40px
+}
+
+.section-head h2 {
+  max-width:760px
+}
+
+.section-head p {
+  max-width:680px;
+  margin-bottom:0
+}
+
+.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+  color:var(--primary);
+  font-size:.75rem;
+  line-height:1.6;
+  letter-spacing:.13em;
+  font-weight:700;
+  text-transform:uppercase
+}
+
+.status-dot {
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#a8d398;
+  box-shadow:0 0 0 4px #c5e7b71a;
+  flex-shrink:0
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:13px 20px;
+  border:1px solid transparent;
+  border-radius:var(--radius-sm);
+  font-size:.875rem;
+  font-weight:600;
+  line-height:1.4;
+  text-align:center;
+  transition:background var(--transition),border-color var(--transition),box-shadow var(--transition),transform var(--transition)
+}
+
+.btn.primary {
+  background:var(--primary);
+  color:white
+}
+
+.btn.primary:hover {
+  background:var(--primary-hover);
+  box-shadow:var(--shadow-md)
+}
+
+.btn.secondary {
+  background:var(--surface);
+  color:var(--primary);
+  border-color:var(--border)
+}
+
+.btn.secondary:hover {
+  background:var(--surface-soft);
+  border-color:#94b68d
+}
+
+.btn svg {
+  transition:transform var(--transition)
+}
+
+.btn:hover svg {
+  transform:translateX(3px)
+}
+
+.btn:active,button:active {
+  transform:translateY(1px)
+}
+
+.body-copy p:last-of-type {
+  margin-bottom:0
+}
+
+@media(max-width:1023px) {
+
+  .two-column {
+    align-items:start
+  }
+}
+
+@media(max-width:767px) {
+  .container {
+    width:calc(100% - 32px)
+  }
+
+  .section {
+    padding-block:60px;
+    scroll-margin-top:0
+  }
+
+  .eyebrow {
+    font-size:.6875rem;
+    margin-bottom:14px
+  }
+
+  .section-head {
+    margin-bottom:28px
+  }
+}
+
+.hero-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center
+}
+
+.feature-caption {
+  font-size:.75rem;
+  color:var(--text-secondary);
+  margin-bottom:10px
+}
+
+.anchor-alias {
+  display:block;
+  position:relative;
+  top:-100px
+}

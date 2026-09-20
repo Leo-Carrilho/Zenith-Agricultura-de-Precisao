@@ -1,0 +1,119 @@
+
+
+.two-column,.platform-grid,.terrain-grid,.cta-grid,.ai-console-grid,.workflow-sticky,.signature-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:56px;
+  align-items:center
+}
+
+.workflow-section {
+  background:var(--surface)
+}
+
+.workflow-visual {
+  overflow:hidden;
+  border-radius:var(--radius-lg);
+  background:var(--surface-soft)
+}
+
+.flight-map {
+  position:relative
+}
+
+.flight-map img {
+  width:100%;
+  height:560px;
+  object-fit:cover
+}
+
+.flight-label {
+  position:absolute;
+  bottom:24px;
+  left:24px;
+  padding:10px 16px;
+  background:var(--background);
+  border-radius:10px;
+  font-size:.75rem;
+  letter-spacing:.12em;
+  font-weight:600
+}
+
+.workflow-content .section-head {
+  margin-bottom:16px
+}
+
+.workflow-stage {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+  font-size:.6875rem;
+  font-weight:600;
+  color:var(--primary)
+}
+
+.signal-line {
+  width:64px;
+  height:1px;
+  background:#9ab48c
+}
+
+.workflow-grid {
+  display:grid
+}
+
+.workflow-card {
+  display:grid;
+  grid-template-columns:36px 1fr;
+  column-gap:14px;
+  padding-block:17px;
+  border-bottom:1px solid var(--border)
+}
+
+.workflow-card>span {
+  grid-row:span 2;
+  font-size:.875rem;
+  color:var(--primary);
+  padding-top:3px
+}
+
+.workflow-card h3 {
+  margin-bottom:4px;
+  font-size:1rem
+}
+
+.workflow-card p {
+  margin:0;
+  font-size:.875rem
+}
+
+.support-note {
+  font-size:.875rem;
+  margin-top:28px;
+  margin-bottom:0
+}
+
+@media(max-width:1100px) {
+
+  .two-column,.platform-grid,.terrain-grid,.cta-grid,.ai-console-grid,.workflow-sticky,.signature-grid {
+    gap:32px
+  }
+}
+
+@media(max-width:767px) {
+
+  .two-column,.terrain-grid,.workflow-sticky,.signature-grid,.cta-grid {
+    grid-template-columns:1fr;
+    gap:28px
+  }
+
+  .flight-map img {
+    height:360px;
+    object-position:center 38%
+  }
+
+  .workflow-visual {
+    order:2
+  }
+}

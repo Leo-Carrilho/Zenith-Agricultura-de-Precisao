@@ -1,0 +1,258 @@
+
+
+.site-header {
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:88px;
+  padding-top:12px;
+  background:transparent
+}
+
+.header-shell {
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:0 14px 0 12px;
+  border:1px solid #ffffff73;
+  border-radius:18px;
+  background:#f3f8f0bd;
+  box-shadow:0 12px 38px #0922181f;
+  backdrop-filter:blur(18px) saturate(145%);
+  -webkit-backdrop-filter:blur(18px) saturate(145%)
+}
+
+.brand {
+  display:inline-flex;
+  align-items:center;
+  gap:10px
+}
+
+.brand img {
+  width:42px;
+  height:42px;
+  border-radius:12px
+}
+
+.brand>span {
+  font-size:1.15rem;
+  font-weight:800;
+  letter-spacing:.12em
+}
+
+.brand small {
+  display:block;
+  font-size:.5625rem;
+  letter-spacing:.105em;
+  margin-top:3px;
+  font-weight:600
+}
+
+.desktop-nav {
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+
+.desktop-nav a {
+  display:flex;
+  align-items:center;
+  min-height:38px;
+  padding:0 10px;
+  border-radius:9px;
+  font-size:.875rem;
+  color:var(--text-secondary);
+  transition:color var(--transition),background var(--transition)
+}
+
+.desktop-nav a:hover {
+  color:var(--primary);
+  background:#ffffff73
+}
+
+.header-cta {
+  min-height:40px;
+  padding:9px 15px;
+  white-space:nowrap;
+  border-radius:10px
+}
+
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto
+}
+
+.menu-button {
+  display:none;
+  place-items:center;
+  width:44px;
+  height:44px;
+  padding:0;
+  color:var(--primary);
+  border:1px solid #d3e0cf;
+  border-radius:var(--radius-sm);
+  background:#ffffff94;
+  backdrop-filter:blur(8px)
+}
+
+.mobile-panel {
+  position:absolute;
+  top:100%;
+  inset-inline:16px;
+  z-index:2;
+  padding:20px;
+  background:#f4f8eff2;
+  border:1px solid #ffffff8f;
+  border-radius:var(--radius-md);
+  box-shadow:0 20px 46px #09221824;
+  backdrop-filter:blur(18px);
+  max-height:calc(100dvh - 96px);
+  overflow-y:auto
+}
+
+.mobile-panel.is-open {
+  display:grid;
+  animation:menu-enter 220ms ease both
+}
+
+.mobile-panel>a:not(.btn) {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 8px;
+  border-bottom:1px solid var(--border)
+}
+
+.mobile-panel small {
+  color:var(--text-secondary);
+  font-size:.75rem
+}
+
+.mobile-panel .btn {
+  margin-top:18px
+}
+
+.menu-caption {
+  font-size:.75rem;
+  color:var(--text-secondary);
+  padding-top:18px;
+  text-align:center
+}
+
+.menu-backdrop {
+  position:fixed;
+  inset:88px 0 0;
+  border:0;
+  background:#173d2b40
+}
+
+.skip-link {
+  position:absolute;
+  left:20px;
+  top:10px;
+  padding:15px;
+  background:white;
+  transform:translateY(-150%);
+  z-index:5
+}
+
+.skip-link:focus {
+  transform:none
+}
+
+.footer a:not(.brand) {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:36px;
+  color:var(--text-secondary)
+}
+
+@media(max-width:1100px) {
+  .desktop-nav {
+    gap:20px
+  }
+
+  .brand small {
+    display:none
+  }
+
+  .header-shell {
+    gap:18px
+  }
+}
+
+@media(max-width:1023px) {
+  .desktop-nav,.header-actions {
+    display:none
+  }
+
+  .menu-button {
+    display:grid
+  }
+
+  .brand small {
+    display:block
+  }
+
+  .header-shell>.language-selector {
+    margin-left:auto
+  }
+
+  .mobile-panel .language-selector {
+    display:grid;
+    width:100%;
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--border)
+  }
+
+  .mobile-panel .language-button {
+    width:100%;
+    min-height:48px;
+    justify-content:flex-start;
+    padding:10px 12px
+  }
+
+  .mobile-panel .language-button span {
+    display:block;
+    flex:1;
+    text-align:left
+  }
+
+  .mobile-panel .language-icon {
+    margin-left:auto
+  }
+
+  .mobile-panel .language-menu {
+    position:static;
+    width:100%;
+    min-width:0;
+    margin-top:8px;
+    box-shadow:0 8px 22px #173d2b12
+  }
+}
+
+@media(max-width:767px) {
+
+  .header-shell {
+    height:72px
+  }
+
+  .brand img {
+    width:42px;
+    height:42px
+  }
+
+  .brand>span {
+    font-size:1rem
+  }
+
+  .menu-backdrop {
+    top:72px
+  }
+}

@@ -1,0 +1,83 @@
+
+
+.text-link,.model-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:.875rem;
+  font-weight:600;
+  min-height:44px;
+  color:var(--primary)
+}
+
+.text-link:hover,.model-link:hover {
+  text-decoration:underline;
+  text-underline-offset:5px
+}
+
+.three-d {
+  background:white
+}
+
+.modelo-3d {
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:400px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:var(--surface-soft)
+}
+
+.model-loading {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:24px;
+  text-align:center;
+  background:var(--surface-soft)
+}
+
+.model-loading p {
+  max-width:320px;
+  font-size:.875rem
+}
+
+.modelo-3d iframe {
+  border:0;
+  width:100%;
+  height:100%
+}
+
+.model-placeholder {
+  display:grid;
+  justify-items:center;
+  gap:18px;
+  padding:28px;
+  text-align:center
+}
+
+.model-placeholder>svg {
+  width:56px;
+  height:56px;
+  color:var(--primary);
+  stroke-width:1
+}
+
+.model-placeholder p {
+  margin:0;
+  font-size:.875rem
+}
+
+@media(max-width:767px) {
+
+  .modelo-3d {
+    height:340px
+  }
+}

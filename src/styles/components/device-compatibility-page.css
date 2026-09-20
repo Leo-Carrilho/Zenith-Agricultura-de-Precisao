@@ -1,0 +1,96 @@
+
+
+.compatibility {
+  min-height:75vh;
+  padding-block:64px
+}
+
+.compatibility-card {
+  width:min(100% - 32px,720px);
+  margin:auto;
+  padding:clamp(24px,5vw,52px);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  background:white;
+  box-shadow:var(--shadow-md)
+}
+
+.compatibility-card>.device-icon {
+  display:grid;
+  place-items:center;
+  width:72px;
+  height:72px;
+  color:var(--primary);
+  background:var(--secondary);
+  border-radius:var(--radius-md);
+  margin-bottom:28px
+}
+
+.compatibility h1 {
+  font-size:clamp(1.85rem,4vw,2.8rem);
+  letter-spacing:-.04em
+}
+
+.compatibility .eyebrow {
+  margin-bottom:14px
+}
+
+.qr-panel {
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding:24px;
+  background:var(--background);
+  border-radius:var(--radius-md);
+  margin-block:28px
+}
+
+.qr-panel img {
+  width:160px;
+  height:160px;
+  background:white;
+  border-radius:10px;
+  flex-shrink:0
+}
+
+.qr-panel p {
+  font-size:.875rem
+}
+
+.copy-link {
+  display:block;
+  width:100%;
+  margin-block:14px;
+  border:1px solid var(--border);
+  padding:12px;
+  border-radius:10px;
+  color:var(--text-secondary);
+  background:white;
+  font-size:.875rem
+}
+
+.copy-status {
+  min-height:24px;
+  margin-bottom:0;
+  font-size:.875rem
+}
+
+@media(max-width:767px) {
+
+  .compatibility {
+    padding-block:36px
+  }
+
+  .qr-panel {
+    flex-direction:column;
+    text-align:center;
+    gap:20px
+  }
+}
+
+@media(max-width:479px) {
+
+  .copy-link {
+    font-size:.75rem
+  }
+}

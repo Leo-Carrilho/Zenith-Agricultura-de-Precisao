@@ -1,8 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import "./styles.css";
-import "./hero.css";
+import "./styles/index.css";
 import { DeviceProvider } from "./hooks/useDeviceType";
 import { LanguageProvider } from "./components/LanguageSelector";
 

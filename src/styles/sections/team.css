@@ -1,0 +1,48 @@
+
+
+.technology-section {
+  background:white
+}
+
+.team-card {
+  position:relative
+}
+
+.team-avatar {
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  margin-bottom:24px;
+  border-radius:50%;
+  background:var(--secondary);
+  color:var(--primary);
+  font-weight:600
+}
+
+.team-card>svg {
+  position:absolute;
+  right:26px;
+  top:30px;
+  width:18px;
+  color:var(--primary)
+}
+
+.team-card strong {
+  display:block;
+  min-height:40px;
+  margin-bottom:14px;
+  color:var(--primary);
+  font-size:.75rem;
+  font-weight:500;
+  line-height:1.5
+}
+
+.contact-team-link {
+  color:#d5eacb;
+  text-decoration:underline;
+  text-underline-offset:5px;
+  display:inline-flex;
+  align-items:center;
+  min-height:44px
+}

@@ -1,0 +1,55 @@
+
+
+.faq-section {
+  background:white
+}
+
+.faq-list {
+  max-width:900px
+}
+
+.faq-item {
+  border-top:1px solid var(--border)
+}
+
+.faq-item:last-child {
+  border-bottom:1px solid var(--border)
+}
+
+.faq-item button {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  width:100%;
+  min-height:70px;
+  padding:20px 4px;
+  text-align:left;
+  background:transparent;
+  border:0;
+  color:var(--text-primary);
+  font-weight:500;
+  font-size:1rem
+}
+
+.faq-item button svg {
+  transition:transform var(--transition)
+}
+
+.faq-item button[aria-expanded="true"] svg {
+  transform:rotate(180deg)
+}
+
+.faq-panel {
+  display:none
+}
+
+.faq-panel.is-open {
+  display:block;
+  padding:0 36px 24px 4px;
+  animation:menu-enter 220ms ease
+}
+
+.faq-panel p {
+  margin:0
+}
