@@ -21,6 +21,7 @@
 .hero-orbits i:nth-child(3) { right:-22%; top:36%; }
 .hero-grid { position:relative; display:grid; grid-template-columns:minmax(0,44fr) minmax(0,55fr); grid-template-rows:auto auto auto; column-gap:1%; align-items:start; width:min(90%,1728px); margin-inline:auto; }
 .hero-copy { grid-column:1; grid-row:1; padding-top:2.1vw; }
+.hero-mobile-language { display:none; }
 .hero .eyebrow { display:flex; align-items:center; gap:16px; margin:0 0 24px 4px; font-size:clamp(10px,.84vw,16px); font-weight:700; letter-spacing:.14em; line-height:1.6; color:#c3ebbb; white-space:nowrap; }
 .hero .eyebrow i { width:9px; height:9px; flex-shrink:0; background:var(--hero-lime); border-radius:50%; box-shadow:0 0 0 9px #78cc8f12,0 0 23px #99e8ac45; }
 .hero h1 { margin:0; color:#f7f9f5; font-family:Zenith Inter,Inter,sans-serif; font-size:clamp(58px,5.87vw,113px); font-weight:700; line-height:.95; letter-spacing:-.065em; text-wrap:initial; }
@@ -138,6 +139,10 @@
   .hero-overlay { background:linear-gradient(90deg,#00170fe8,#00170f88 66%,#00170f20),linear-gradient(0deg,#00170f 0%,#00170f20 45%,#00170f33); }
   .hero-grid { width:84.8%; grid-template-columns:minmax(0,1fr); gap:0; }
   .hero-copy { padding:0 1.5%; grid-column:1; grid-row:1; }
+  .hero-mobile-language { display:flex; justify-content:flex-start; margin:0 0 3.6vw; }
+  .hero-mobile-language .language-button { min-height:44px; padding:9px 13px; color:#eff9ea; border-color:#c9e6bc70; background:#062519c7; box-shadow:0 10px 30px #00160d38; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+  .hero-mobile-language .language-button:hover,.hero-mobile-language .language-button[aria-expanded="true"] { color:#fff; border-color:#c9e6bcb8; background:#103d29e8; }
+  .hero-mobile-language .language-menu { left:0; right:auto; z-index:4; color:#173d2b; }
   .hero .eyebrow { font-size:1.92vw; gap:2.8vw; margin:0 0 3.1vw; letter-spacing:.14em; }
   .hero .eyebrow i { width:1.35vw; height:1.35vw; box-shadow:0 0 0 1.2vw #78cc8f18; }
   .hero h1 { font-size:10.65vw; line-height:.94; letter-spacing:-.06em; }
@@ -186,6 +191,9 @@
   .hero-signoff i { display:block; width:5.6vw; height:.5vw; flex-shrink:0; }
 }
 @media (max-width:480px) {
+  .hero-mobile-language { margin-bottom:14px; }
+  .hero-mobile-language .language-button { width:auto; min-width:132px; }
+  .hero-mobile-language .language-button span { display:inline; }
   .hero .btn { width:58%; min-height:44px; font-size:3vw; padding-inline:3vw; border-radius:9px; }
   .hero .hero-actions { gap:7px; }
   .hero-copy>p { font-size:3.35vw; }

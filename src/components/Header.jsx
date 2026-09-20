@@ -20,10 +20,10 @@ export function Header() {
     const onKey = (event) => {
       if (event.key === "Escape") close();
       if (event.key === "Tab") {
-        const links = [...panel.current.querySelectorAll("a")];
-        const focusable = [trigger.current, ...links];
+        const panelControls = [...panel.current.querySelectorAll("a, button:not([disabled])")];
+        const focusable = [trigger.current, ...panelControls];
         const index = focusable.indexOf(document.activeElement);
-        if (event.shiftKey && index === 0) { event.preventDefault(); links.at(-1)?.focus(); }
+        if (event.shiftKey && index === 0) { event.preventDefault(); panelControls.at(-1)?.focus(); }
         if (!event.shiftKey && index === focusable.length - 1) { event.preventDefault(); trigger.current?.focus(); }
       }
     };

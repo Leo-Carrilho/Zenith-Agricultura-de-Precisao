@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" role="img" aria-label="Flag of the United States">
+  <rect width="28" height="20" fill="#fff"/>
+  <g fill="#B31942">
+    <rect width="28" height="1.54"/><rect y="3.08" width="28" height="1.54"/><rect y="6.16" width="28" height="1.54"/><rect y="9.24" width="28" height="1.54"/><rect y="12.32" width="28" height="1.54"/><rect y="15.4" width="28" height="1.54"/><rect y="18.46" width="28" height="1.54"/>
+  </g>
+  <rect width="12" height="10.77" fill="#0A3161"/>
+  <g fill="#fff">
+    <circle cx="1.2" cy="1.15" r=".32"/><circle cx="3.1" cy="1.15" r=".32"/><circle cx="5" cy="1.15" r=".32"/><circle cx="6.9" cy="1.15" r=".32"/><circle cx="8.8" cy="1.15" r=".32"/><circle cx="10.7" cy="1.15" r=".32"/>
+    <circle cx="2.15" cy="2.55" r=".32"/><circle cx="4.05" cy="2.55" r=".32"/><circle cx="5.95" cy="2.55" r=".32"/><circle cx="7.85" cy="2.55" r=".32"/><circle cx="9.75" cy="2.55" r=".32"/>
+    <circle cx="1.2" cy="3.95" r=".32"/><circle cx="3.1" cy="3.95" r=".32"/><circle cx="5" cy="3.95" r=".32"/><circle cx="6.9" cy="3.95" r=".32"/><circle cx="8.8" cy="3.95" r=".32"/><circle cx="10.7" cy="3.95" r=".32"/>
+    <circle cx="2.15" cy="5.35" r=".32"/><circle cx="4.05" cy="5.35" r=".32"/><circle cx="5.95" cy="5.35" r=".32"/><circle cx="7.85" cy="5.35" r=".32"/><circle cx="9.75" cy="5.35" r=".32"/>
+    <circle cx="1.2" cy="6.75" r=".32"/><circle cx="3.1" cy="6.75" r=".32"/><circle cx="5" cy="6.75" r=".32"/><circle cx="6.9" cy="6.75" r=".32"/><circle cx="8.8" cy="6.75" r=".32"/><circle cx="10.7" cy="6.75" r=".32"/>
+    <circle cx="2.15" cy="8.15" r=".32"/><circle cx="4.05" cy="8.15" r=".32"/><circle cx="5.95" cy="8.15" r=".32"/><circle cx="7.85" cy="8.15" r=".32"/><circle cx="9.75" cy="8.15" r=".32"/>
+    <circle cx="1.2" cy="9.55" r=".32"/><circle cx="3.1" cy="9.55" r=".32"/><circle cx="5" cy="9.55" r=".32"/><circle cx="6.9" cy="9.55" r=".32"/><circle cx="8.8" cy="9.55" r=".32"/><circle cx="10.7" cy="9.55" r=".32"/>
+  </g>
+</svg>

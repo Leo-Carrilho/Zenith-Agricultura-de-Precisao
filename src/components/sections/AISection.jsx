@@ -7,7 +7,7 @@ export function AISection() {
         <div className="section-copy reveal">
           <span className="eyebrow">Zenith AI / Modelo em validação</span>
           <h2>Diagnóstico com Inteligência Artificial.</h2>
-          <p>O modelo utiliza EfficientNetB3 e está em validação para apoiar a leitura de imagens da soja por visão computacional.</p>
+          <p>O modelo utiliza a arquitetura EfficientNetB3, treinada com deep learning, e está em validação para classificar padrões em imagens da soja.</p>
           <p className="support-text">O resultado deve ser interpretado como apoio à inspeção da lavoura.</p>
         </div>
         <div className="ai-console reveal" aria-label="Painel simulado de diagnóstico com IA">
@@ -17,7 +17,7 @@ export function AISection() {
           </div>
           <div className="ai-sample">
             <img src="/assets/Teste_soja.webp" alt="Imagem de referência de folha de soja com manchas" width="500" height="300" loading="lazy" />
-            <div><span>VISÃO COMPUTACIONAL</span><strong>Da imagem à interpretação.</strong><span>Identificação de padrões visuais para apoiar a avaliação da soja.</span></div>
+            <div><span>DEEP LEARNING</span><strong>Da imagem ao diagnóstico.</strong><span>Classificação de padrões aprendidos pelo modelo para apoiar a avaliação da soja.</span></div>
           </div>
           <div className="ai-flow" aria-label="Fluxo de diagnóstico com IA">
             {[[FileUp, "Enviar imagem"], [BrainCircuit, "Processando"], [Eye, "Resultado"]].map(([Icon, label]) => (

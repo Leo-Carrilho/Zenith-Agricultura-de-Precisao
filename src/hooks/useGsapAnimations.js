@@ -74,8 +74,7 @@ function initHeroParallax(root, amount) {
 function initFeaturesParallax(root, amount) {
   addScene(root, ".operation-center", (tl, q) => {
     tl.to(q(".section-head"), { y: -amount(PARALLAX.text), ease: "none" }, 0)
-      .to(q(".resource-card"), { y: (index) => -amount([16, 27, 22, 34][index] ?? 18), ease: "none" }, 0)
-      .to(q(".feature-visual img"), { y: amount(18), scale: 1.04, ease: "none" }, 0);
+      .to(q(".resource-card"), { y: (index) => -amount([16, 27, 22, 34][index] ?? 18), ease: "none" }, 0);
   });
 }
 

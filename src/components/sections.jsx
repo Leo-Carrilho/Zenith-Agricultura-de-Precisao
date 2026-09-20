@@ -5,6 +5,7 @@ export { CTASection } from "./sections/CTASection";
 export { FAQSection } from "./sections/FAQSection";
 export { InstallSection } from "./sections/InstallSection";
 export { ManagementSection } from "./sections/ManagementSection";
+export { MappingSection } from "./sections/MappingSection";
 export { MultispectralSection } from "./sections/MultispectralSection";
 export { OperationCenter } from "./sections/OperationCenter";
 export { PlatformPreview } from "./sections/PlatformPreview";

@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { PlatformCTA } from "./PlatformCTA";
+import { LanguageSelector } from "./LanguageSelector";
 
 export function Hero() {
   return (
@@ -9,6 +10,9 @@ export function Hero() {
       <div className="hero-orbits" aria-hidden="true"><i /><i /><i /></div>
       <div className="hero-grid">
         <div className="hero-copy">
+          <div className="hero-mobile-language" aria-label="Idioma do site">
+            <LanguageSelector className="language-selector--hero" />
+          </div>
           <h1>Sua precisão<br />agrícola <span>no</span><br /><span className="hero-title-last">ponto mais alto.</span></h1>
           <p>Drones, inteligência artificial e dados em campo<br className="hero-desktop-break" /> para uma lavoura mais produtiva, sustentável<br className="hero-desktop-break" /> e rentável.</p>
           <div className="hero-actions">

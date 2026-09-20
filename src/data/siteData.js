@@ -37,7 +37,7 @@ export const operationFlow = [
 export const operationFeatures = [
   [BrainCircuit, "Diagnóstico por IA", "Apoio à análise de imagens da soja com modelo em validação."],
   [Sprout, "Monitoramento visual", "Leitura visual do plantio, fileiras e regiões de atenção."],
-  [CloudSun, "Clima", "Informações climáticas para contextualizar as decisões da propriedade."],
+  [CloudSun, "Clima", "Condições atuais, alertas e previsão para os próximos cinco dias, com temperatura, chuva, umidade, vento e rajadas, pressão, visibilidade, nuvens e horários do nascer e do pôr do sol."],
   [Map, "Mapa e talhões", "Organização da área produtiva por propriedade, mapa e talhões."],
   [PackageCheck, "Estoque", "Registro de insumos disponíveis, entradas e saídas da operação."],
   [FileText, "Diário de campo", "Histórico de observações, atividades e ocorrências da lavoura."],
@@ -53,7 +53,7 @@ export const workflowSteps = [
 ];
 
 export const managementModules = [
-  [CloudSun, "Clima", "Condições recentes e alertas para planejamento."],
+  [CloudSun, "Clima", "Condições atuais, alertas e previsão para os próximos cinco dias, com temperatura, chuva, umidade, vento e rajadas, pressão, visibilidade, nuvens e horários do nascer e do pôr do sol."],
   [Map, "Mapa e talhões", "Áreas organizadas por propriedade e safra."],
   [PackageCheck, "Estoque", "Controle de insumos e movimentações."],
   [FileText, "Diário de campo", "Registros de observações e atividades."],

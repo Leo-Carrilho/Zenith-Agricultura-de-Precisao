@@ -1,11 +1,15 @@
 import { Languages } from "lucide-react";
-import { useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 const languages = [
-  ["pt-BR", "Português"],
-  ["en", "English"],
-  ["es", "Español"]
+  { code: "pt-BR", label: "Português", flag: "/assets/flags/br.svg" },
+  { code: "en", label: "English", flag: "/assets/flags/us.svg" },
+  { code: "es", label: "Español", flag: "/assets/flags/es.svg" }
 ];
+
+const LANGUAGE_STORAGE_KEY = "zenith-language";
+const supportedLanguages = new Set(languages.map(({ code }) => code));
+const LanguageContext = createContext(null);
 
 const translations = {
   "Início": ["Home", "Inicio"], "Soluções": ["Solutions", "Soluciones"], "Tecnologia": ["Technology", "Tecnología"], "Sobre": ["About", "Acerca de"], "Contato": ["Contact", "Contacto"],
@@ -21,7 +25,7 @@ const translations = {
   "Da primeira imagem ao acompanhamento da propriedade, informações conectadas para uma agricultura mais precisa.": ["From the first image to property monitoring, connected information for more precise agriculture.", "Desde la primera imagen hasta el seguimiento de la propiedad, información conectada para una agricultura más precisa."],
   "Explorar solução": ["Explore solution", "Explorar solución"], "Monitoramento agrícola": ["Agricultural monitoring", "Monitoreo agrícola"], "Diagnóstico por IA": ["AI diagnosis", "Diagnóstico por IA"], "Reconstrução 3D": ["3D reconstruction", "Reconstrucción 3D"], "Mapeamento de talhões": ["Field mapping", "Mapeo de parcelas"],
   "Imagens e dados para acompanhar o plantio e reconhecer regiões que precisam de atenção.": ["Images and data to track planting and identify areas that need attention.", "Imágenes y datos para acompañar la siembra e identificar regiones que necesitan atención."],
-  "Visão computacional aplicada à soja, com um modelo em validação para apoiar a inspeção.": ["Computer vision applied to soybeans, with a model under validation to support inspection.", "Visión computacional aplicada a la soja, con un modelo en validación para apoyar la inspección."],
+  "Modelo de inteligência artificial treinado com deep learning para reconhecer padrões em imagens da soja e apoiar o diagnóstico.": ["Artificial intelligence model trained with deep learning to recognize patterns in soybean images and support diagnosis.", "Modelo de inteligencia artificial entrenado con deep learning para reconocer patrones en imágenes de soja y apoyar el diagnóstico."],
   "Imagens sequenciais do voo transformadas em uma perspectiva tridimensional da área.": ["Sequential flight images transformed into a three-dimensional view of the area.", "Imágenes secuenciales del vuelo transformadas en una perspectiva tridimensional del área."],
   "Organização espacial da propriedade para acompanhar cada área e seu histórico.": ["Spatial organization of the property to track each area and its history.", "Organización espacial de la propiedad para acompañar cada área y su historial."],
   "Do voo ao acompanhamento.": ["From flight to monitoring.", "Del vuelo al seguimiento."], "Planejamento": ["Planning", "Planificación"], "Voo": ["Flight", "Vuelo"], "Captura": ["Capture", "Captura"], "Processamento": ["Processing", "Procesamiento"],
@@ -42,7 +46,7 @@ const translations = {
   "SEU PRÓXIMO PASSO": ["YOUR NEXT STEP", "TU PRÓXIMO PASO"], "Um olhar mais preciso.": ["A more precise view.", "Una mirada más precisa."], "Uma decisão mais segura.": ["A safer decision.", "Una decisión más segura."], "Conhecer a equipe": ["Meet the team", "Conocer al equipo"], "Tecnologia com os pés no campo.": ["Technology with its feet in the field.", "Tecnología con los pies en el campo."],
   "Sobre o projeto": ["About the project", "Sobre el proyecto"], "O campo produz dados. O Zenith transforma em informação.": ["The field produces data. Zenith turns it into information.", "El campo produce datos. Zenith los transforma en información."],
   "Registro manual de imagens aéreas da lavoura.": ["Manual recording of aerial crop images.", "Registro manual de imágenes aéreas del cultivo."], "Envio e organização dos dados em uma interface responsiva.": ["Data upload and organization in a responsive interface.", "Envío y organización de datos en una interfaz responsiva."], "Processamento das imagens por visão computacional.": ["Image processing through computer vision.", "Procesamiento de imágenes mediante visión computacional."], "Histórico, tarefas e informações para apoiar a rotina.": ["History, tasks and information to support daily work.", "Historial, tareas e información para apoyar la rutina."],
-  "Apoio à análise de imagens da soja com modelo em validação.": ["Support for soybean image analysis with a model under validation.", "Apoyo al análisis de imágenes de soja con un modelo en validación."], "Monitoramento visual": ["Visual monitoring", "Monitoreo visual"], "Leitura visual do plantio, fileiras e regiões de atenção.": ["Visual reading of planting, rows and areas of attention.", "Lectura visual de la siembra, hileras y regiones de atención."], "Informações climáticas para contextualizar as decisões da propriedade.": ["Weather information to provide context for property decisions.", "Información climática para contextualizar las decisiones de la propiedad."], "Mapa e talhões": ["Map and fields", "Mapa y parcelas"], "Estoque": ["Inventory", "Inventario"], "Diário de campo": ["Field diary", "Diario de campo"], "Equipe e atividades": ["Team and activities", "Equipo y actividades"],
+  "Apoio à análise de imagens da soja com modelo em validação.": ["Support for soybean image analysis with a model under validation.", "Apoyo al análisis de imágenes de soja con un modelo en validación."], "Monitoramento visual": ["Visual monitoring", "Monitoreo visual"], "Leitura visual do plantio, fileiras e regiões de atenção.": ["Visual reading of planting, rows and areas of attention.", "Lectura visual de la siembra, hileras y regiones de atención."], "Condições atuais, alertas e previsão para os próximos cinco dias, com temperatura, chuva, umidade, vento e rajadas, pressão, visibilidade, nuvens e horários do nascer e do pôr do sol.": ["Current conditions, alerts and a five-day forecast, including temperature, rainfall, humidity, wind and gusts, pressure, visibility, cloud cover, and sunrise and sunset times.", "Condiciones actuales, alertas y pronóstico para los próximos cinco días, con temperatura, lluvia, humedad, viento y ráfagas, presión, visibilidad, nubosidad y horarios de salida y puesta del sol."], "Mapa e talhões": ["Map and fields", "Mapa y parcelas"], "Estoque": ["Inventory", "Inventario"], "Diário de campo": ["Field diary", "Diario de campo"], "Equipe e atividades": ["Team and activities", "Equipo y actividades"],
   "A equipe define a área, o objetivo da vistoria e as imagens necessárias para análise.": ["The team defines the area, inspection goal and images needed for analysis.", "El equipo define el área, el objetivo de la inspección y las imágenes necesarias para el análisis."], "O drone sobrevoa o talhão com foco em cobertura, nitidez e sequência das capturas.": ["The drone flies over the field focusing on coverage, sharpness and capture sequence.", "El dron sobrevuela la parcela con foco en cobertura, nitidez y secuencia de capturas."], "As imagens aéreas da lavoura são registradas para envio e organização na plataforma.": ["Aerial crop images are recorded for upload and organization on the platform.", "Las imágenes aéreas del cultivo se registran para enviarlas y organizarlas en la plataforma."], "A Inteligência Artificial e a visão computacional processam os arquivos enviados.": ["Artificial Intelligence and computer vision process the uploaded files.", "La Inteligencia Artificial y la visión computacional procesan los archivos enviados."], "O sistema apresenta indicadores, resultados visuais e histórico para acompanhamento.": ["The system presents indicators, visual results and history for monitoring.", "El sistema presenta indicadores, resultados visuales e historial para el seguimiento."],
   "Organiza a interface responsiva para celular e computador.": ["Organizes the responsive interface for mobile and desktop.", "Organiza la interfaz responsiva para celular y computadora."], "Controla autenticação e dados compartilhados.": ["Manages authentication and shared data.", "Controla la autenticación y los datos compartidos."], "Conecta o front end aos serviços de análise.": ["Connects the front end to analysis services.", "Conecta el front end a los servicios de análisis."], "Processa imagens agrícolas e visão computacional.": ["Processes agricultural images and computer vision.", "Procesa imágenes agrícolas y visión computacional."],
   "O drone realiza o voo sozinho?": ["Does the drone fly by itself?", "¿El dron realiza el vuelo solo?"], "A IA substitui um profissional agrícola?": ["Does AI replace an agricultural professional?", "¿La IA reemplaza a un profesional agrícola?"], "O aplicativo funciona sem internet?": ["Does the app work without internet?", "¿La aplicación funciona sin internet?"], "Quais imagens podem ser analisadas?": ["Which images can be analyzed?", "¿Qué imágenes se pueden analizar?"], "Quem pode acessar os dados da propriedade?": ["Who can access the property data?", "¿Quién puede acceder a los datos de la propiedad?"],
@@ -73,20 +77,70 @@ Object.assign(translations, {
   "O Zenith pode organizar imagens sequenciais do mesmo voo e encaminhá-las para a criação de um modelo tridimensional da área.": ["Zenith can organize sequential images from the same flight and send them for creating a three-dimensional model of the area.", "Zenith puede organizar imágenes secuenciales del mismo vuelo y enviarlas para crear un modelo tridimensional del área."], "Imagens sequenciais do mesmo voo": ["Sequential images from the same flight", "Imágenes secuenciales del mismo vuelo"], "Processamento fotogramétrico": ["Photogrammetric processing", "Procesamiento fotogramétrico"], "Modelo interativo para inspeção": ["Interactive model for inspection", "Modelo interactivo para inspección"],
   "Campo como entrada. Drone como sensor. Plataforma como centro de decisão.": ["Field as input. Drone as sensor. Platform as decision center.", "Campo como entrada. Dron como sensor. Plataforma como centro de decisión."],
   "captura aérea": ["aerial capture", "captura aérea"], "apoio diagnóstico": ["diagnostic support", "apoyo diagnóstico"], "campo e desktop": ["field and desktop", "campo y escritorio"],
-  "O modelo utiliza EfficientNetB3 e está em validação para apoiar a leitura de imagens da soja por visão computacional.": ["The model uses EfficientNetB3 and is under validation to support soybean-image reading through computer vision.", "El modelo utiliza EfficientNetB3 y está en validación para apoyar la lectura de imágenes de soja mediante visión computacional."], "ANÁLISE ZENITH AI": ["ZENITH AI ANALYSIS", "ANÁLISIS ZENITH AI"], "VISÃO COMPUTACIONAL": ["COMPUTER VISION", "VISIÓN COMPUTACIONAL"], "Identificação de padrões visuais para apoiar a avaliação da soja.": ["Identification of visual patterns to support soybean assessment.", "Identificación de patrones visuales para apoyar la evaluación de la soja."],
+  "O modelo utiliza a arquitetura EfficientNetB3, treinada com deep learning, e está em validação para classificar padrões em imagens da soja.": ["The model uses the EfficientNetB3 architecture, trained with deep learning, and is under validation to classify patterns in soybean images.", "El modelo utiliza la arquitectura EfficientNetB3, entrenada con deep learning, y está en validación para clasificar patrones en imágenes de soja."], "ANÁLISE ZENITH AI": ["ZENITH AI ANALYSIS", "ANÁLISIS ZENITH AI"], "DEEP LEARNING": ["DEEP LEARNING", "DEEP LEARNING"], "Da imagem ao diagnóstico.": ["From image to diagnosis.", "De la imagen al diagnóstico."], "Classificação de padrões aprendidos pelo modelo para apoiar a avaliação da soja.": ["Classification of patterns learned by the model to support soybean assessment.", "Clasificación de patrones aprendidos por el modelo para apoyar la evaluación de la soja."],
   "O carregamento básico pode utilizar cache, mas análises, clima e sincronização dependem de conexão.": ["Basic loading may use cache, but analysis, weather and synchronization depend on a connection.", "La carga básica puede utilizar caché, pero los análisis, el clima y la sincronización dependen de conexión."]
   ,"Cada mapa indica onde observar com mais atenção — a confirmação acontece na inspeção em campo.": ["Each map indicates where to look more closely — confirmation happens during field inspection.", "Cada mapa indica dónde observar con más atención; la confirmación ocurre durante la inspección en campo."],
   "Dados": ["Data", "Datos"], "Visão": ["Vision", "Visión"], "sensor": ["sensor", "sensor"], "imagem": ["image", "imagen"], "envio": ["upload", "envío"], "interpretação": ["interpretation", "interpretación"], "diagnóstico": ["diagnosis", "diagnóstico"], "gestão": ["management", "gestión"], "apoio": ["support", "apoyo"],
   "Propriedade": ["Property", "Propiedad"], "Talhão": ["Field", "Parcela"], "Resultado": ["Result", "Resultado"],
   "Ataque de lagarta": ["Caterpillar attack", "Ataque de oruga"], "Cercosporiose": ["Cercospora leaf spot", "Cercosporiosis"], "Ferrugem da soja": ["Soybean rust", "Roya de la soja"], "Soja saudável": ["Healthy soybean", "Soja saludable"],
-  "Condições recentes e alertas para planejamento.": ["Recent conditions and alerts for planning.", "Condiciones recientes y alertas para la planificación."], "Áreas organizadas por propriedade e safra.": ["Areas organized by property and season.", "Áreas organizadas por propiedad y temporada."], "Controle de insumos e movimentações.": ["Control of inputs and movements.", "Control de insumos y movimientos."], "Registros de observações e atividades.": ["Records of observations and activities.", "Registros de observaciones y actividades."], "Diagnósticos anteriores para consulta.": ["Previous diagnoses for reference.", "Diagnósticos anteriores para consulta."],
+  "Áreas organizadas por propriedade e safra.": ["Areas organized by property and season.", "Áreas organizadas por propiedad y temporada."], "Controle de insumos e movimentações.": ["Control of inputs and movements.", "Control de insumos y movimientos."], "Registros de observações e atividades.": ["Records of observations and activities.", "Registros de observaciones y actividades."], "Diagnósticos anteriores para consulta.": ["Previous diagnoses for reference.", "Diagnósticos anteriores para consulta."],
   "Perfil voltado para gestão da propriedade, acompanhamento da equipe e revisão das atividades.": ["Profile for property management, team monitoring and activity review.", "Perfil orientado a la gestión de la propiedad, seguimiento del equipo y revisión de actividades."], "Administra a propriedade": ["Manages the property", "Administra la propiedad"], "Cadastra e acompanha a equipe": ["Registers and monitors the team", "Registra y acompaña al equipo"], "Atribui tarefas e atividades": ["Assigns tasks and activities", "Asigna tareas y actividades"], "Acompanha os módulos permitidos": ["Monitors permitted modules", "Acompaña los módulos permitidos"], "Revisa a conclusão das atividades": ["Reviews activity completion", "Revisa la conclusión de las actividades"], "Módulos e equipe": ["Modules and team", "Módulos y equipo"], "Acesso amplo": ["Full access", "Acceso amplio"],
   "Perfil focado na rotina operacional, tarefas atribuídas e visualização dos dados autorizados.": ["Profile focused on operational routine, assigned tasks and viewing authorized data.", "Perfil enfocado en la rutina operativa, tareas asignadas y visualización de datos autorizados."], "Registra entrada e saída": ["Records check-in and check-out", "Registra entrada y salida"], "Consulta tarefas atribuídas": ["Views assigned tasks", "Consulta tareas asignadas"], "Altera o status das próprias atividades": ["Changes the status of own activities", "Cambia el estado de sus propias actividades"], "Acessa apenas os módulos autorizados": ["Accesses only authorized modules", "Accede solo a los módulos autorizados"], "Visualiza dados da propriedade vinculada": ["Views linked property data", "Visualiza datos de la propiedad vinculada"], "Tarefas atribuídas": ["Assigned tasks", "Tareas asignadas"], "Acesso autorizado": ["Authorized access", "Acceso autorizado"],
   "Escolha seu dispositivo": ["Choose your device", "Elige tu dispositivo"], "Abra a versão oficial": ["Open the official version", "Abre la versión oficial"], "Entre na sua conta": ["Sign in to your account", "Inicia sesión en tu cuenta"], "Acompanhe a lavoura": ["Monitor the crop", "Acompaña el cultivo"],
-  "Front-end e experiência PWA": ["Front-end and PWA experience", "Front-end y experiencia PWA"], "Interface, responsividade, instalação como app e experiência visual do Zenith.": ["Interface, responsiveness, app installation and Zenith visual experience.", "Interfaz, responsividad, instalación como app y experiencia visual de Zenith."], "Inteligência Artificial, visão computacional e Aplicativo Desktop": ["Artificial Intelligence, computer vision and Desktop App", "Inteligencia Artificial, visión computacional y Aplicación de escritorio"], "Aplicativo mobile e integração": ["Mobile app and integration", "Aplicación móvil e integración"], "Auxiliar do Aplicativo Desktop": ["Desktop App Assistant", "Auxiliar de la Aplicación de escritorio"],
+  "Front-end e experiência PWA": ["Front-end and PWA experience", "Front-end y experiencia PWA"], "Interface, responsividade, instalação como app e experiência visual do Zenith.": ["Interface, responsiveness, app installation and Zenith visual experience.", "Interfaz, responsividad, instalación como app y experiencia visual de Zenith."], "Inteligência Artificial, visão computacional e Aplicativo Desktop": ["Artificial Intelligence, computer vision and Desktop App", "Inteligencia Artificial, visión computacional y Aplicación de escritorio"], "Modelos de análise, processamento de imagens e validação técnica dos resultados, estudando técnicas agrícolas, desenvolvimento da aplicação para computador e integração dos fluxos desktop.": ["Analysis models, image processing, and technical validation of results; research into agricultural techniques; desktop application development; and integration of desktop workflows.", "Modelos de análisis, procesamiento de imágenes y validación técnica de resultados; estudio de técnicas agrícolas; desarrollo de la aplicación para computadora; e integración de los flujos de escritorio."], "Aplicativo mobile e integração": ["Mobile app and integration", "Aplicación móvil e integración"], "Fluxos mobile, integração entre serviços, testes e suporte à experiência em campo.": ["Mobile workflows, service integration, testing, and support for the in-field experience.", "Flujos móviles, integración entre servicios, pruebas y soporte para la experiencia en campo."], "Auxiliar do Aplicativo Desktop": ["Desktop App Assistant", "Auxiliar de la Aplicación de escritorio"], "Desenvolvimento da aplicação para computador, adaptação de fluxos e suporte ao uso em ambiente desktop.": ["Desktop application development, workflow adaptation, and support for desktop use.", "Desarrollo de la aplicación para computadora, adaptación de flujos y soporte para el uso en un entorno de escritorio."],
   "As imagens precisam ser compatíveis, nítidas e adequadas para análise visual da lavoura de soja.": ["Images must be compatible, clear and suitable for visual analysis of soybean crops.", "Las imágenes deben ser compatibles, nítidas y adecuadas para el análisis visual del cultivo de soja."], "O acesso depende do perfil do usuário e da propriedade vinculada, com permissões diferentes para gestor e funcionário.": ["Access depends on the user profile and linked property, with different permissions for manager and employee.", "El acceso depende del perfil de usuario y de la propiedad vinculada, con permisos diferentes para gerente y empleado."],
   "Conheça os responsáveis pelo projeto →": ["Meet the people responsible for the project →", "Conoce a los responsables del proyecto →"]
-  ,"Leitura da lavoura": ["Crop reading", "Lectura del cultivo"], "Imagem → análise → contexto": ["Image → analysis → context", "Imagen → análisis → contexto"], "Uma nova dimensão do campo": ["A new dimension of the field", "Una nueva dimensión del campo"], "Propriedade → talhão → histórico": ["Property → field → history", "Propiedad → parcela → historial"]
+  ,"Leitura da lavoura": ["Crop reading", "Lectura del cultivo"], "Imagem → análise → contexto": ["Image → analysis → context", "Imagen → análisis → contexto"], "Uma nova dimensão do campo": ["A new dimension of the field", "Una nueva dimensión del campo"], "Propriedade → talhão → histórico": ["Property → field → history", "Propiedad → parcela → historial"],
+  "Demarcação e visualização 2D": ["2D field mapping and view", "Demarcación y visualización 2D"], "Visualização do talhão em 3D": ["3D field visualization", "Visualización de la parcela en 3D"], "O mesmo talhão em duas perspectivas.": ["The same field from two perspectives.", "La misma parcela desde dos perspectivas."],
+  "MAPEAMENTO DE TALHÕES": ["FIELD MAPPING", "MAPEO DE PARCELAS"], "Do desenho da área à leitura do terreno.": ["From drawing the area to reading the terrain.", "Del trazado del área a la lectura del terreno."], "Compare a demarcação em 2D com a visualização em 3D do mesmo talhão.": ["Compare the 2D boundary map with the 3D view of the same field.", "Compara la demarcación 2D con la visualización 3D de la misma parcela."],
+  "Delimita a área produtiva e registra os limites do talhão sobre o mapa.": ["Defines the production area and records the field boundaries on the map.", "Delimita el área productiva y registra los límites de la parcela en el mapa."], "Apresenta o mesmo talhão em perspectiva para facilitar a leitura do terreno.": ["Shows the same field in perspective to make the terrain easier to understand.", "Presenta la misma parcela en perspectiva para facilitar la lectura del terreno."],
+  "Delimite o talhão": ["Define the field", "Delimita la parcela"], "Marque os limites da área produtiva diretamente sobre o mapa.": ["Mark the production area boundaries directly on the map.", "Marca los límites del área productiva directamente en el mapa."],
+  "Alterne a perspectiva": ["Switch perspectives", "Alterna la perspectiva"], "Compare a visão superior em 2D com a leitura espacial em 3D.": ["Compare the 2D top view with the 3D spatial view.", "Compara la vista superior 2D con la lectura espacial 3D."],
+  "Acompanhe o histórico": ["Track the history", "Acompaña el historial"], "Mantenha área, registros e análises vinculados ao mesmo talhão.": ["Keep area data, records and analyses linked to the same field.", "Mantén el área, los registros y los análisis vinculados a la misma parcela."],
+  "Desenho do perímetro": ["Boundary drawing", "Trazado del perímetro"], "Cálculo da área": ["Area calculation", "Cálculo del área"], "Organização dos talhões": ["Field organization", "Organización de parcelas"], "Perspectiva do terreno": ["Terrain perspective", "Perspectiva del terreno"], "Contexto espacial": ["Spatial context", "Contexto espacial"], "Inspeção visual da área": ["Visual area inspection", "Inspección visual del área"],
+  "DECISÃO COM CONTEXTO": ["DECISIONS WITH CONTEXT", "DECISIONES CON CONTEXTO"], "2D para organizar. 3D para compreender.": ["2D to organize. 3D to understand.", "2D para organizar. 3D para comprender."], "As duas visualizações representam o mesmo talhão. A demarcação estrutura a propriedade; a perspectiva 3D amplia a leitura do terreno e prepara o acompanhamento ao longo do tempo.": ["Both views represent the same field. Boundary mapping structures the property; the 3D perspective expands terrain understanding and prepares long-term monitoring.", "Ambas visualizaciones representan la misma parcela. La demarcación estructura la propiedad; la perspectiva 3D amplía la lectura del terreno y prepara el seguimiento a lo largo del tiempo."], "Visualização": ["Visualization", "Visualización"]
+  ,"01 / SOLUÇÕES ZENITH": ["01 / ZENITH SOLUTIONS", "01 / SOLUCIONES ZENITH"]
+  ,"Visão geral": ["Overview", "Vista general"]
+  ,"Mapa de possíveis alterações fisiológicas na lavoura.": ["Map of possible physiological changes in the crop.", "Mapa de posibles alteraciones fisiológicas en el cultivo."]
+  ,"Resposta espectral": ["Spectral response", "Respuesta espectral"]
+  ,"Mapa da intensidade relativa da diferença espectral identificada.": ["Map of the relative intensity of the identified spectral difference.", "Mapa de la intensidad relativa de la diferencia espectral identificada."]
+  ,"Índice de vegetação calculado a partir das bandas vermelha e infravermelho próximo.": ["Vegetation index calculated from the red and near-infrared bands.", "Índice de vegetación calculado a partir de las bandas roja e infrarroja cercana."]
+  ,"Índice sensível às bandas Red Edge e infravermelho próximo.": ["Index sensitive to the Red Edge and near-infrared bands.", "Índice sensible a las bandas Red Edge e infrarroja cercana."]
+  ,"Prioridade": ["Priority", "Prioridad"]
+  ,"Áreas indicadas para orientar a inspeção em campo.": ["Areas indicated to guide field inspection.", "Áreas indicadas para orientar la inspección en campo."]
+  ,"CAPTURA": ["CAPTURE", "CAPTURA"]
+  ,"Diagnóstico": ["Diagnosis", "Diagnóstico"]
+  ,"Se a instalação não estiver disponível, abra o link no Safari ou Chrome atualizado. As opções dependem do navegador e do dispositivo.": ["If installation is not available, open the link in an up-to-date Safari or Chrome. Options depend on the browser and device.", "Si la instalación no está disponible, abre el enlace en Safari o Chrome actualizado. Las opciones dependen del navegador y del dispositivo."]
+  ,"abra a instalação oficial no Safari e use Compartilhar → Adicionar à Tela de Início.": ["open the official installation in Safari and choose Share → Add to Home Screen.", "abre la instalación oficial en Safari y usa Compartir → Añadir a la pantalla de inicio."]
+  ,"abra a instalação oficial no Chrome. Use a opção de instalação quando oferecida, ou procure Instalar aplicativo / Adicionar à tela inicial no menu.": ["open the official installation in Chrome. Use the install option when offered, or look for Install app / Add to Home screen in the menu.", "abre la instalación oficial en Chrome. Usa la opción de instalación cuando se ofrezca, o busca Instalar aplicación / Añadir a la pantalla de inicio en el menú."]
+  ,"Conecta o front-end aos serviços de análise.": ["Connects the front end to analysis services.", "Conecta el front-end a los servicios de análisis."]
+  ,"Organização da área produtiva por propriedade, mapa e talhões.": ["Organization of the production area by property, map and fields.", "Organización del área productiva por propiedad, mapa y parcelas."]
+  ,"Registro de insumos disponíveis, entradas e saídas da operação.": ["Record of available inputs and operation inflows and outflows.", "Registro de insumos disponibles, entradas y salidas de la operación."]
+  ,"Histórico de observações, atividades e ocorrências da lavoura.": ["History of crop observations, activities and occurrences.", "Historial de observaciones, actividades y ocurrencias del cultivo."]
+  ,"Atribuição de tarefas e acompanhamento por perfis de acesso.": ["Task assignment and monitoring by access profile.", "Asignación de tareas y seguimiento por perfiles de acceso."]
+  ,"Permite gerar modelos 3D a partir de imagens sequenciais.": ["Generates 3D models from sequential images.", "Permite generar modelos 3D a partir de imágenes secuenciales."]
+  ,"Carregando a prévia interativa…": ["Loading the interactive preview…", "Cargando la vista previa interactiva…"]
+  ,"A prévia está demorando para responder. Você também pode abrir o modelo em tela cheia.": ["The preview is taking longer to respond. You can also open the model full screen.", "La vista previa está tardando en responder. También puedes abrir el modelo en pantalla completa."]
+  ,"Escolha como você quer usar a Zenith": ["Choose how you want to use Zenith", "Elige cómo quieres usar Zenith"]
+  ,"A instalação mobile deve ser realizada pelo celular": ["Mobile installation must be completed on a phone", "La instalación móvil debe realizarse desde el celular"]
+  ,"Esta versão foi desenvolvida para computadores": ["This version was designed for computers", "Esta versión fue diseñada para computadoras"]
+  ,"A Zenith no dispositivo certo para você": ["Zenith on the right device for you", "Zenith en el dispositivo adecuado para ti"]
+  ,"UMA ZENITH. CADA EXPERIÊNCIA NO SEU LUGAR.": ["ONE ZENITH. THE RIGHT EXPERIENCE FOR EVERY DEVICE.", "UNA ZENITH. CADA EXPERIENCIA EN SU LUGAR."]
+  ,"Use a plataforma web em um computador. No celular ou tablet iOS/Android, acesse a instalação mobile.": ["Use the web platform on a computer. On an iOS/Android phone or tablet, open the mobile installation.", "Usa la plataforma web en una computadora. En un celular o tableta iOS/Android, accede a la instalación móvil."]
+  ,"Acesse a instalação oficial pelo seu smartphone. No computador, você pode continuar na plataforma web Zenith.": ["Open the official installation on your smartphone. On a computer, you can continue on the Zenith web platform.", "Accede a la instalación oficial desde tu smartphone. En la computadora, puedes continuar en la plataforma web de Zenith."]
+  ,"A plataforma web Zenith foi otimizada para computadores. Para utilizar a Zenith no celular ou tablet, instale nossa versão mobile.": ["The Zenith web platform is optimized for computers. To use Zenith on a phone or tablet, install our mobile version.", "La plataforma web de Zenith está optimizada para computadoras. Para usar Zenith en un celular o tableta, instala nuestra versión móvil."]
+  ,"No computador, acesse a plataforma web para acompanhar sua lavoura, analisar imagens e organizar sua operação.": ["On a computer, access the web platform to monitor your crop, analyze images and organize your operation.", "En la computadora, accede a la plataforma web para acompañar tu cultivo, analizar imágenes y organizar tu operación."]
+  ,"Leve a Zenith para o campo.": ["Take Zenith to the field.", "Lleva Zenith al campo."]
+  ,"Escaneie com a câmera do celular para continuar.": ["Scan with your phone camera to continue.", "Escanea con la cámara de tu celular para continuar."]
+  ,"Copiar link": ["Copy link", "Copiar enlace"]
+  ,"LINK DE INSTALAÇÃO": ["INSTALLATION LINK", "ENLACE DE INSTALACIÓN"]
+  ,"Selecione e copie o endereço abaixo para abrir no celular.": ["Select and copy the address below to open it on your phone.", "Selecciona y copia la dirección de abajo para abrirla en el celular."]
+  ,"Link copiado. Abra no seu celular para continuar.": ["Link copied. Open it on your phone to continue.", "Enlace copiado. Ábrelo en tu celular para continuar."]
+  ,"Estou no computador": ["I'm on a computer", "Estoy en la computadora"]
+  ,"Estou no celular": ["I'm on a phone", "Estoy en el celular"]
+  ,"Instalar Zenith no celular": ["Install Zenith on mobile", "Instalar Zenith en el celular"]
+  ,"Acessar plataforma para desktop": ["Access desktop platform", "Acceder a la plataforma de escritorio"]
+  ,"Continuar no site": ["Continue to site", "Continuar en el sitio"]
 });
 
 function translateTextNodes(language) {
@@ -100,7 +154,7 @@ function translateTextNodes(language) {
   nodes.forEach((node) => {
     const original = originalText.get(node) ?? node.nodeValue.trim();
     const translated = languageIndex < 0 ? original : translations[original]?.[languageIndex];
-    if (!translated) return;
+    if (!translated || node.nodeValue.trim() === translated) return;
     originalText.set(node, original);
     const leading = node.nodeValue.match(/^\s*/)?.[0] ?? "";
     const trailing = node.nodeValue.match(/\s*$/)?.[0] ?? "";
@@ -108,39 +162,107 @@ function translateTextNodes(language) {
   });
 }
 
-/** Seletor visual e de preferência do Zenith, sem serviços de terceiros. */
-export function LanguageSelector() {
-  const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState(() => localStorage.getItem("zenith-language") || "pt-BR");
+function getSavedLanguage() {
+  try {
+    const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return supportedLanguages.has(saved) ? saved : "pt-BR";
+  } catch {
+    return "pt-BR";
+  }
+}
+
+/** Mantém todos os seletores sincronizados e aplica a tradução sem recarregar a página. */
+export function LanguageProvider({ children }) {
+  const [language, setLanguageState] = useState(getSavedLanguage);
+
+  const setLanguage = useCallback((code) => {
+    const nextLanguage = supportedLanguages.has(code) ? code : "pt-BR";
+
+    // A aplicação imediata evita depender do próximo ciclo de renderização em celulares.
+    document.documentElement.lang = nextLanguage;
+    translateTextNodes(nextLanguage);
+    setLanguageState(nextLanguage);
+
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    } catch {
+      // O idioma continua funcionando quando o navegador bloqueia o armazenamento local.
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
-    let frame = requestAnimationFrame(() => translateTextNodes(language));
+    translateTextNodes(language);
+
+    let frame;
     const observer = new MutationObserver(() => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => translateTextNodes(language));
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document.body, { childList: true, characterData: true, subtree: true });
+
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
   }, [language]);
 
+  useEffect(() => {
+    const syncBetweenTabs = (event) => {
+      if (event.key === LANGUAGE_STORAGE_KEY && supportedLanguages.has(event.newValue)) {
+        setLanguageState(event.newValue);
+      }
+    };
+    window.addEventListener("storage", syncBetweenTabs);
+    return () => window.removeEventListener("storage", syncBetweenTabs);
+  }, []);
+
+  const value = useMemo(() => ({ language, setLanguage }), [language, setLanguage]);
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+}
+
+/** Seletor visual e de preferência do Zenith, sem serviços de terceiros. */
+export function LanguageSelector({ className = "" }) {
+  const context = useContext(LanguageContext);
+  const [open, setOpen] = useState(false);
+  const selector = useRef(null);
+  const language = context?.language ?? "pt-BR";
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnOutsideClick = (event) => {
+      if (!selector.current?.contains(event.target)) setOpen(false);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
+
   const selectLanguage = (code) => {
-    setLanguage(code);
-    localStorage.setItem("zenith-language", code);
+    context?.setLanguage(code);
     setOpen(false);
   };
 
-  const currentLabel = languages.find(([code]) => code === language)?.[1] || "Português";
-  return <div className="language-selector">
-    <button className="language-button" type="button" aria-label="Selecionar idioma" aria-expanded={open} aria-haspopup="listbox" onClick={() => setOpen(!open)}>
-      <Languages aria-hidden="true" size={18} />
-      <span>{currentLabel}</span>
+  const currentLanguage = languages.find(({ code }) => code === language) ?? languages[0];
+  const ariaLabel = language === "en" ? "Select language" : language === "es" ? "Seleccionar idioma" : "Selecionar idioma";
+
+  return <div ref={selector} className={`language-selector ${className}`.trim()}>
+    <button className="language-button" type="button" aria-label={`${ariaLabel}: ${currentLanguage.label}`} aria-expanded={open} aria-haspopup="listbox" onClick={() => setOpen((current) => !current)}>
+      <img className="language-flag" src={currentLanguage.flag} alt="" width="22" height="16" aria-hidden="true" />
+      <span>{currentLanguage.label}</span>
+      <Languages className="language-icon" aria-hidden="true" size={16} />
     </button>
-    {open && <div className="language-menu" role="listbox" aria-label="Selecionar idioma">
-      {languages.map(([code, label]) => <button key={code} type="button" role="option" aria-selected={language === code} onClick={() => selectLanguage(code)}>{label}</button>)}
+    {open && <div className="language-menu" role="listbox" aria-label={ariaLabel}>
+      {languages.map(({ code, label, flag }) => <button key={code} type="button" role="option" aria-selected={language === code} onClick={() => selectLanguage(code)}>
+        <img className="language-flag" src={flag} alt="" width="22" height="16" aria-hidden="true" />
+        <span>{label}</span>
+      </button>)}
     </div>}
   </div>;
 }

@@ -10,6 +10,7 @@ import {
   FAQSection,
   InstallSection,
   ManagementSection,
+  MappingSection,
   MultispectralSection,
   OperationCenter,
   PlatformPreview,
@@ -61,6 +62,7 @@ export default function App() {
         <AISection />
         <PlantingVision />
         <ThreeDMonitor />
+        <MappingSection />
         <ManagementSection />
         <Accounts />
         <InstallSection />
