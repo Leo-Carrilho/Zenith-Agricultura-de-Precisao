@@ -9,8 +9,8 @@ export function CTASection() {
         <h3>Tecnologia com os pés no campo.</h3>
         <p>Zenith Agro é um projeto acadêmico e tecnológico em agricultura de precisão.</p>
         <div className="contact-channels">
-          <a href="https://www.instagram.com/zenith.agricola/" target="_blank" rel="noreferrer" aria-label="Instagram da Zenith Agro"><Instagram size={20} aria-hidden="true" /><span><small>Instagram</small><strong>@zenithagro</strong></span></a>
-          <a href="mailto:zenithagroia@gmail.com" aria-label="Enviar e-mail para a Zenith Agro"><Mail size={20} aria-hidden="true" /><span><small>E-mail</small><strong>zenithagroia@gmail.com</strong></span></a>
+          <a href="https://www.instagram.com/zenith.agricola/" target="_blank" rel="noreferrer" aria-label="Instagram da Zenith Agro"><Instagram size={20} aria-hidden="true" /><span><small>Instagram</small><strong>@zenith.agricola</strong></span></a>
+          <a href="mailto:zenith.agroia@gmail.com" aria-label="Enviar e-mail para a Zenith Agro"><Mail size={20} aria-hidden="true" /><span><small>E-mail</small><strong>zenith.agroia@gmail.com</strong></span></a>
         </div>
         <a className="contact-team-link" href="#equipe">Conheça os responsáveis pelo projeto →</a>
       </div>
