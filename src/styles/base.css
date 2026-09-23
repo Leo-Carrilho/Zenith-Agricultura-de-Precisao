@@ -31,12 +31,19 @@
 }
 
 html {
+  max-width:100%;
+  overflow-x:hidden;
+  overflow-x:clip;
   scroll-behavior:smooth;
   scroll-padding-top:100px
 }
 
 body {
+  min-width:0;
+  max-width:100%;
   margin:0;
+  overflow-x:hidden;
+  overflow-x:clip;
   font-family:Inter,"Segoe UI",sans-serif;
   color:var(--text-primary);
   background:var(--background);
@@ -44,6 +51,15 @@ body {
   top:0!important
 }
 
+#root {
+  min-width:0;
+  max-width:100%
+}
+
+main,header,footer,section {
+  min-width:0;
+  max-width:100%
+}
 
 a {
   color:inherit;
@@ -81,6 +97,8 @@ h1,h2,h3,p {
 }
 
 h1,h2,h3 {
+  max-width:100%;
+  overflow-wrap:break-word;
   text-wrap:balance
 }
 

@@ -132,11 +132,15 @@
   }
 
   .account-tabs {
-    display:flex
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%
   }
 
   .account-tabs button {
-    padding-inline:12px
+    min-width:0;
+    padding-inline:12px;
+    white-space:normal
   }
 
   .permission-mock {
@@ -149,6 +153,6 @@
 
   .account-tabs {
     flex-direction:column;
-    width:100%
+    grid-template-columns:1fr
   }
 }

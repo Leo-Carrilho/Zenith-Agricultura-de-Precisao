@@ -208,6 +208,15 @@
     gap:16px
   }
 
+  .multispectral-map-grid {
+    grid-template-columns:1fr
+  }
+
+  .multispectral-map:last-child {
+    grid-column:auto;
+    width:auto
+  }
+
   .multispectral-note {
     grid-template-columns:auto 1fr;
     padding:18px
@@ -221,17 +230,8 @@
 
 @media(max-width:479px) {
 
-  .multispectral-map-grid {
-    grid-template-columns:1fr
-  }
-
   .multispectral-map img {
     width:90%
-  }
-
-  .multispectral-map:last-child {
-    grid-column:auto;
-    width:auto
   }
 
   .multispectral-reassurance {

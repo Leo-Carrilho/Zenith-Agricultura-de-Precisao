@@ -1,0 +1,56 @@
+/*
+ * Responsive rules loaded last on purpose.
+ * Some section files share card/grid selectors, so their desktop defaults can
+ * otherwise override an earlier mobile breakpoint through the cascade.
+ */
+@media(max-width:1023px) {
+  .planting-card {
+    grid-template-columns:minmax(0,1fr)
+  }
+}
+
+@media(max-width:767px) {
+  .planting-card {
+    gap:24px;
+    padding:18px
+  }
+
+  .planting-preview,
+  .planting-report {
+    min-width:0;
+    width:100%
+  }
+
+  .flow-track,
+  .team-grid,
+  .class-grid,
+  .module-grid,
+  .tech-row {
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));
+    gap:12px
+  }
+
+  .flow-card,
+  .team-card,
+  .class-grid article,
+  .module-grid article,
+  .tech-row article {
+    min-width:0;
+    padding:22px;
+    overflow-wrap:anywhere
+  }
+
+  .team-card strong {
+    min-height:0
+  }
+}
+
+@media(max-width:479px) {
+  .flow-track,
+  .team-grid,
+  .class-grid,
+  .module-grid,
+  .tech-row {
+    grid-template-columns:minmax(0,1fr)
+  }
+}

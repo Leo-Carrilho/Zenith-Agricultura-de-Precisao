@@ -99,7 +99,22 @@
   }
 
   .install-steps {
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));
     gap:18px
+  }
+}
+
+@media(max-width:479px) {
+  .install-card {
+    padding:20px
+  }
+
+  .install-preview {
+    height:250px;
+    padding:16px
+  }
+
+  .install-steps {
+    grid-template-columns:1fr
   }
 }

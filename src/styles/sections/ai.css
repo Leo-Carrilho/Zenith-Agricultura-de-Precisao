@@ -163,6 +163,10 @@
   .ai-console {
     padding:20px
   }
+
+  .class-grid {
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))
+  }
 }
 
 @media(max-width:479px) {
@@ -186,6 +190,7 @@
   }
 
   .class-grid {
+    grid-template-columns:1fr;
     gap:12px
   }
 

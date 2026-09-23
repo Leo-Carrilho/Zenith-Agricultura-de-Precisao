@@ -83,7 +83,7 @@
   }
 
   .flow-track,.team-grid,.module-grid,.tech-row {
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));
     gap:12px
   }
 
@@ -99,7 +99,7 @@
 
 @media(max-width:479px) {
 
-  .resource-grid,.flow-track,.team-grid,.module-grid,.tech-row {
+  .resource-grid,.flow-track,.team-grid,.module-grid,.tech-row,.class-grid {
     grid-template-columns:1fr
   }
 }
