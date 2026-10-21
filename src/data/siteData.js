@@ -35,7 +35,7 @@ export const operationFlow = [
 ];
 
 export const operationFeatures = [
-  [BrainCircuit, "Diagnóstico por IA", "Apoio à análise de imagens da soja com modelo em validação."],
+  [BrainCircuit, "Diagnóstico por IA", "Triagem de imagens de soja ou trigo para apoiar a inspeção em campo."],
   [Sprout, "Monitoramento visual", "Leitura visual do plantio, fileiras e regiões de atenção."],
   [CloudSun, "Clima", "Condições atuais, alertas e previsão para os próximos cinco dias, com temperatura, chuva, umidade, vento e rajadas, pressão, visibilidade, nuvens e horários do nascer e do pôr do sol."],
   [Map, "Mapa e talhões", "Organização da área produtiva por propriedade, mapa e talhões."],
@@ -79,6 +79,6 @@ export const faqs = [
   ["O drone realiza o voo sozinho?", "Não. O funcionamento atual considera captura manual das imagens. O Zenith organiza o envio, a análise e o acompanhamento dos registros."],
   ["A IA substitui um profissional agrícola?", "Não. A IA oferece apoio à inspeção da lavoura e os resultados devem ser interpretados por um responsável técnico."],
   ["O aplicativo funciona sem internet?", "O carregamento básico pode utilizar cache, mas análises, clima e sincronização dependem de conexão."],
-  ["Quais imagens podem ser analisadas?", "As imagens precisam ser compatíveis, nítidas e adequadas para análise visual da lavoura de soja."],
+  ["Quais imagens podem ser analisadas?", "As imagens precisam ser compatíveis, nítidas e adequadas para a análise visual de soja ou trigo."],
   ["Quem pode acessar os dados da propriedade?", "O acesso depende do perfil do usuário e da propriedade vinculada, com permissões diferentes para gestor e funcionário."]
 ];

@@ -7,6 +7,7 @@ export { InstallSection } from "./sections/InstallSection";
 export { ManagementSection } from "./sections/ManagementSection";
 export { MappingSection } from "./sections/MappingSection";
 export { MultispectralSection } from "./sections/MultispectralSection";
+export { NewFeatures } from "./sections/NewFeatures";
 export { OperationCenter } from "./sections/OperationCenter";
 export { PlatformPreview } from "./sections/PlatformPreview";
 export { PlantingVision } from "./sections/PlantingVision";

@@ -12,6 +12,7 @@ import {
   ManagementSection,
   MappingSection,
   MultispectralSection,
+  NewFeatures,
   OperationCenter,
   PlatformPreview,
   PlantingVision,
@@ -60,6 +61,7 @@ export default function App() {
         <SignatureSection />
         <PlatformPreview />
         <AISection />
+        <NewFeatures />
         <PlantingVision />
         <ThreeDMonitor />
         <MappingSection />

@@ -7,7 +7,7 @@ export function AISection() {
         <div className="section-copy reveal">
           <span className="eyebrow">Zenith AI / Modelo em validação</span>
           <h2>Diagnóstico com Inteligência Artificial.</h2>
-          <p>O modelo utiliza a arquitetura EfficientNetB3, treinada com deep learning, e está em validação para classificar padrões em imagens da soja.</p>
+          <p>Escolha entre soja e trigo para realizar a triagem de imagens com Inteligência Artificial. Cada cultura utiliza um fluxo de análise compatível com seus padrões visuais.</p>
           <p className="support-text">O resultado deve ser interpretado como apoio à inspeção da lavoura.</p>
         </div>
         <div className="ai-console reveal" aria-label="Painel simulado de diagnóstico com IA">
@@ -17,7 +17,7 @@ export function AISection() {
           </div>
           <div className="ai-sample">
             <img src="/assets/Teste_soja.webp" alt="Imagem de referência de folha de soja com manchas" width="500" height="300" loading="lazy" />
-            <div><span>DEEP LEARNING</span><strong>Da imagem ao diagnóstico.</strong><span>Classificação de padrões aprendidos pelo modelo para apoiar a avaliação da soja.</span></div>
+            <div><span>DEEP LEARNING</span><strong>Da imagem ao diagnóstico.</strong><span>Selecione soja ou trigo e receba uma leitura que apoia a avaliação em campo.</span></div>
           </div>
           <div className="ai-flow" aria-label="Fluxo de diagnóstico com IA">
             {[[FileUp, "Enviar imagem"], [BrainCircuit, "Processando"], [Eye, "Resultado"]].map(([Icon, label]) => (
@@ -28,7 +28,7 @@ export function AISection() {
         </div>
       </div>
       <div className="container class-grid stagger">
-        {["Ataque de lagarta", "Cercosporiose", "Ferrugem da soja", "Soja saudável"].map((item) => (
+        {["Soja", "Trigo", "Triagem por imagens", "Conferência em campo"].map((item) => (
           <article key={item}><BrainCircuit size={22} aria-hidden="true" /><h3>{item}</h3></article>
         ))}
       </div>
