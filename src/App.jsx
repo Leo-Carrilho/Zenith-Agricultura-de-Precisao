@@ -24,6 +24,7 @@ import {
 } from "./components/sections";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import { DeviceCompatibilityPage } from "./components/DeviceCompatibilityPage";
+import { MaintenancePage } from "./components/MaintenancePage";
 
 export default function App() {
   const root = useGsapAnimations();
@@ -48,12 +49,13 @@ export default function App() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const intent = new URLSearchParams(window.location.search).get("destino");
   const accessRoutes = { "/acessar-plataforma": "desktop", "/instalar-aplicativo": "mobile" };
-  const compatibility = path === "/dispositivo-incompativel" || path in accessRoutes;
+  const maintenance = path === "/em-desenvolvimento" || path in accessRoutes;
+  const compatibility = path === "/dispositivo-incompativel";
 
   return (
     <div ref={root}>
       <Header />
-      {compatibility ? <DeviceCompatibilityPage intent={accessRoutes[path] || (["desktop", "mobile"].includes(intent) ? intent : "auto")} redirect={path in accessRoutes} /> : <main id="main" tabIndex={-1}>
+      {maintenance ? <MaintenancePage /> : compatibility ? <DeviceCompatibilityPage intent={["desktop", "mobile"].includes(intent) ? intent : "auto"} /> : <main id="main" tabIndex={-1}>
         <Hero />
         <OperationCenter />
         <WorkflowSection />
