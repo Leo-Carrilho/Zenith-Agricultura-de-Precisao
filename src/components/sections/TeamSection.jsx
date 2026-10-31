@@ -5,7 +5,7 @@ export function TeamSection() {
     <section className="section team-section" id="equipe">
       <div className="container section-head reveal">
         <span className="eyebrow">Equipe</span>
-        <h2>Quatro frentes trabalhando no mesmo produto.</h2>
+        <h2>Cinco frentes trabalhando no mesmo produto.</h2>
       </div>
       <div className="container team-grid stagger">
         {team.map(([name, role, text, initials, Icon]) => (

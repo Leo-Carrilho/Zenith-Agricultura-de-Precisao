@@ -7,6 +7,7 @@ import {
   Drone,
   FileText,
   Map,
+  Megaphone,
   Monitor,
   PackageCheck,
   Smartphone,
@@ -72,7 +73,8 @@ export const team = [
   ["Leonardo", "Front-end e experiência PWA", "Interface, responsividade, instalação como app e experiência visual do Zenith.", "LC", BarChart3],
   ["Octavio", "Inteligência Artificial, visão computacional e Aplicativo Desktop", "Modelos de análise, processamento de imagens e validação técnica dos resultados, estudando técnicas agrícolas, desenvolvimento da aplicação para computador e integração dos fluxos desktop.", "OR", BrainCircuit],
   ["Samuel", "Aplicativo mobile e integração", "Fluxos mobile, integração entre serviços, testes e suporte à experiência em campo.", "SR", Smartphone],
-  ["Pietro Gimenez", "Auxiliar do Aplicativo Desktop", "Desenvolvimento da aplicação para computador, adaptação de fluxos e suporte ao uso em ambiente desktop.", "PG", Monitor]
+  ["Pietro Gimenez", "Auxiliar do Aplicativo Desktop", "Desenvolvimento da aplicação para computador, adaptação de fluxos e suporte ao uso em ambiente desktop.", "PG", Monitor],
+  ["Vinicius Kauan", "Marketing e comunicação do Zenith", "Estratégia de marca, criação de conteúdo, gestão das redes sociais e divulgação da plataforma, desenvolvendo a comunicação com produtores rurais, empresas e parceiros do agronegócio.", "VK", Megaphone]
 ];
 
 export const faqs = [
