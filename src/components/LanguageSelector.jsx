@@ -11,6 +11,10 @@ const LANGUAGE_STORAGE_KEY = "zenith-language";
 const supportedLanguages = new Set(languages.map(({ code }) => code));
 const LanguageContext = createContext(null);
 
+export function useLanguage() {
+  return useContext(LanguageContext);
+}
+
 const translations = {
   "Início": ["Home", "Inicio"], "Soluções": ["Solutions", "Soluciones"], "Tecnologia": ["Technology", "Tecnología"], "Sobre": ["About", "Acerca de"], "Contato": ["Contact", "Contacto"],
   "Sua precisão": ["Your agricultural", "Tu precisión"], "agrícola": ["precision", "agrícola"], "no": ["at its", "en el"], "ponto mais alto.": ["highest point.", "punto más alto."],
